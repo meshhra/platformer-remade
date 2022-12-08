@@ -30,7 +30,8 @@ public class CameraFollowPlayer : MonoBehaviour
 
     private void CalculateVerticalposition()
     {
-        currentVerticalPosition = Mathf.Lerp(currentVerticalPosition, player.transform.position.y, delay * Time.deltaTime);
+        //currentVerticalPosition = Mathf.Lerp(currentVerticalPosition, player.transform.position.y, delay * Time.deltaTime);
+        currentVerticalPosition = player.transform.position.y;
     }
 
     private void SetCameraPosition()
