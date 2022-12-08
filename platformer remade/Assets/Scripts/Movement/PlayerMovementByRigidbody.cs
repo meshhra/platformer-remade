@@ -18,7 +18,7 @@ public class PlayerMovementByRigidbody : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        SetGravity();
         SetHorizontalvelocity();
         SetverticalSpeed();
     }
@@ -38,6 +38,27 @@ public class PlayerMovementByRigidbody : MonoBehaviour
         if (jumpDown)
         {
             wantsTOJump = true;
+        }
+    }
+
+    [Header("GRAVITY")]
+    [SerializeField][Range(1,50)] private float gravityUp = 10f;
+    [SerializeField][Range(1, 50)] private float gravityDown = 15f;
+
+    private void SetGravity()
+    {
+        Vector2 _velocity = _rigidbody2D.velocity;
+        if (_velocity.y > 0)
+        {
+            _rigidbody2D.gravityScale = gravityUp;
+        }
+        else if (_velocity.y < 0)
+        {
+            _rigidbody2D.gravityScale = gravityDown;
+        }
+        else
+        {
+            _rigidbody2D.gravityScale = 1;
         }
     }
 

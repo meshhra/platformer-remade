@@ -1134,9 +1134,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 10
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1798910039
 SpriteRenderer:
@@ -1218,6 +1218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody2D: {fileID: 1798910038}
+  wantsTOJump: 0
+  gravityUp: 10
+  gravityDown: 15
   _speed: 12
   _acceleration: 120
   _deacceleration: 120
@@ -1275,6 +1278,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2233284973972728770, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
+      propertyPath: delay
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6373826355705810563, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_Name
       value: Main Camera

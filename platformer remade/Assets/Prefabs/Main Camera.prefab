@@ -131,4 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961404949b5f304c956926454535f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  player: {fileID: 0}
+  currentHorizontalPosition: 0
+  currentVerticalPosition: 0
+  delay: 10
