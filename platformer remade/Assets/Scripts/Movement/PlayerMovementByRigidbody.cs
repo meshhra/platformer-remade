@@ -11,24 +11,37 @@ public class PlayerMovementByRigidbody : MonoBehaviour
     {
         _rigidbody2D= GetComponent<Rigidbody2D>();
     }
+
     private void Update()
     {
         GatherInput();
+    }
+    private void FixedUpdate()
+    {
+        
         SetHorizontalvelocity();
         SetverticalSpeed();
     }
 
+    [Header("INPUT")]
+    [SerializeField] private bool wantsTOJump = false;
     private float xInput;
-
     private bool jumpDown;
     private bool jumpUp;
+    
+
     private void GatherInput()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         jumpDown = Input.GetKeyDown(KeyCode.Space);
         jumpUp = Input.GetKeyUp(KeyCode.Space);
+        if (jumpDown)
+        {
+            wantsTOJump = true;
+        }
     }
 
+    [Header("MOVEMENT")]
     [SerializeField] private float _speed = 12;
     [SerializeField] private float _acceleration = 120;
     [SerializeField] private float _deacceleration = 120;
@@ -37,6 +50,7 @@ public class PlayerMovementByRigidbody : MonoBehaviour
 
     private void SetHorizontalvelocity()
     {
+        Vector2 _velocity = _rigidbody2D.velocity;
         if (xInput!=0)
         {
             _horizontalSpeed = Mathf.MoveTowards(_horizontalSpeed, _speed * xInput, _acceleration * Time.deltaTime);
@@ -46,13 +60,16 @@ public class PlayerMovementByRigidbody : MonoBehaviour
             _horizontalSpeed = Mathf.MoveTowards(_horizontalSpeed, 0f, _deacceleration * Time.deltaTime);
         }
         _rigidbody2D.velocity = new Vector2(_horizontalSpeed, _rigidbody2D.velocity.y);
+
     }
 
     private void SetverticalSpeed()
     {
-        if (jumpDown)
+        Vector2 _velocity = _rigidbody2D.velocity;
+        if (wantsTOJump)
         {
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x,_jumpHeight);
+            wantsTOJump = false;
+            _rigidbody2D.velocity = new Vector2(_velocity.x,_jumpHeight);
         }
     }
 }

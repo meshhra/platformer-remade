@@ -43,7 +43,8 @@ public class PlayerMovementByTranslation : MonoBehaviour
         {
             _horizontalSpeed = Mathf.MoveTowards(_horizontalSpeed, 0f, _deacceleration * Time.deltaTime);
         }
-        
+
+        transform.position += new Vector3(_horizontalSpeed, 0) * Time.deltaTime;
     }
 
     private void SetverticalSpeed()

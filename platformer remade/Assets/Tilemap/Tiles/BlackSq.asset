@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackSq
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: d2abd77eea433d44a8a08eaea37ab60f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Transform:
     e00: 1
     e01: 0
