@@ -248,22 +248,23 @@ MonoBehaviour:
   jumpDown: 0
   jumpUp: 0
   movementSpeed: 12
-  acceleration: 50
-  deacceleration: 50
+  acceleration: 90
+  deacceleration: 120
   currentHorizontalSpeed: 0
   currentVerticalSpeed: 0
   isGrounded: 0
   layerMask:
     serializedVersion: 2
     m_Bits: 16
-  rayLength: 1
+  rayLength: 0.2
   raySpacing: 0
-  rayCount: 4
+  rayCount: 6
   defaultGravity: 1
-  gravityUp: 15
-  gravityDown: 20
+  gravityUp: 10
+  gravityDown: 15
   fallCap: 30
-  jumpHeight: 50
+  jumpHeight: 40
+  jumping: 0
 --- !u!61 &4124049068635046567
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5622897038851554506}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1ded9dec986837d4ca428baa0fb91178, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

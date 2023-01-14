@@ -11888,6 +11888,10 @@ PrefabInstance:
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
+      propertyPath: rayCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
       propertyPath: gravityUp
       value: 10
       objectReference: {fileID: 0}
@@ -11897,11 +11901,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
       propertyPath: jumpHeight
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
       propertyPath: gravityDown
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
+      propertyPath: acceleration
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
+      propertyPath: deacceleration
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4124049068635046567, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
       propertyPath: m_Material
