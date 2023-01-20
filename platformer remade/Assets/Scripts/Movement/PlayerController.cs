@@ -1,9 +1,4 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Rendering;
-using UnityEditor.ShaderGraph.Internal;
+
 using UnityEngine;
 using static UnityEngine.UI.Image;
 

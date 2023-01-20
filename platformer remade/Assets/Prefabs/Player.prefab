@@ -263,7 +263,7 @@ MonoBehaviour:
   gravityUp: 10
   gravityDown: 15
   fallCap: 30
-  jumpHeight: 40
+  jumpHeight: 43
   jumping: 0
 --- !u!61 &4124049068635046567
 BoxCollider2D:
