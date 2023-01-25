@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: BlackSq
+  m_Name: distant building colro
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 7482667652216324306, guid: d2abd77eea433d44a8a08eaea37ab60f, type: 3}
-  m_Color: {r: 0, g: 0.011764707, b: 0.16862746, a: 1}
+  m_Color: {r: 0.29803923, g: 0.61960787, b: 0.54901963, a: 1}
   m_Transform:
     e00: 1
     e01: 0
