@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
         GetInput();
         SetHorizonatlSpeed();
         CheckGrounded();
+        CheckCieling();
         CalculateGravity();
         CalculateJump();
     }
@@ -104,6 +105,49 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
+
+    #region CIELING CHECK
+    [Header("CIELING CHECK")]
+    [SerializeField] private bool isCieled = false;
+    /*
+    [SerializeField] private LayerMask layerMask;
+    [SerializeField] private float rayLength = 1f;
+    [SerializeField] private float raySpacing;
+    [SerializeField] private int rayCount = 4;*/
+
+    void CheckCieling()
+    {
+        raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
+        Vector2 _rayOrigin0 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 0);
+        Vector2 _rayOrigin1 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 1);
+        Vector2 _rayOrigin2 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 2);
+        Vector2 _rayOrigin3 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 3);
+
+
+        RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.up, rayLength, layerMask);
+        RaycastHit2D hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.up, rayLength, layerMask);
+        RaycastHit2D hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.up, rayLength, layerMask);
+        RaycastHit2D hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.up, rayLength, layerMask);
+        if (hit0.collider == null && hit1.collider == null && hit2.collider == null && hit3.collider == null)
+        {
+            Debug.DrawRay(_rayOrigin0, Vector2.up * rayLength, Color.green);
+            Debug.DrawRay(_rayOrigin1, Vector2.up * rayLength, Color.green);
+            Debug.DrawRay(_rayOrigin2, Vector2.up * rayLength, Color.green);
+            Debug.DrawRay(_rayOrigin3, Vector2.up * rayLength, Color.green);
+            isCieled = false;
+        }
+        else
+        {
+            Debug.DrawRay(_rayOrigin0, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.red);
+            isCieled = true;
+        }
+
+    }
+    #endregion
+
     #region CALCULATING GRAVITY
     [Header("GRAVITY")]
     [SerializeField] private float defaultGravity = 1f;
@@ -135,6 +179,7 @@ public class PlayerController : MonoBehaviour
 
     #region JUMPING
     [Header("JUMPING")]
+    /*
     [SerializeField] private float jumpHeight = 40f;
     public bool jumping;
     //public float _jumpAcc = 80f;
@@ -148,8 +193,38 @@ public class PlayerController : MonoBehaviour
         {
             rigiBody2D.velocity = new Vector2(rigiBody2D.velocity.x, 0);
         }
+    }*/
+    [SerializeField]private float _defaultJumpDuration = 5f;
+    [SerializeField] private float _jumpVelocity = 10f;
+    [SerializeField] private bool _jumping = false;
+    
+
+    [SerializeField]private float _jumpDuration;
+    void CalculateJump()
+    {
+        if(isGrounded && jumpDown)
+        { 
+            _jumpDuration = _defaultJumpDuration;
+        }
+
+        if(isCieled)
+        {
+            _jumpDuration = 0;
+            //rigiBody2D.velocity = new Vector2(rigiBody2D.velocity.x, 0f);
+        }
+
+        if(!isGrounded && rigiBody2D.velocity.y >0 && jumpUp)
+        {
+            _jumpDuration = 0;
+            rigiBody2D.velocity = new Vector2(rigiBody2D.velocity.x, 0);
+        }
+
+        if(_jumpDuration > 0)
+        {
+            _jumpDuration -= Time.deltaTime;
+            rigiBody2D.velocity = new Vector2(rigiBody2D.velocity.x, _jumpVelocity);
+        }
     }
 
-    
     #endregion
 }

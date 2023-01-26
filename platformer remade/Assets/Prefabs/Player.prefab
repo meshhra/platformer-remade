@@ -259,12 +259,15 @@ MonoBehaviour:
   rayLength: 0.2
   raySpacing: 0
   rayCount: 4
+  isCieled: 0
   defaultGravity: 1
   gravityUp: 10
   gravityDown: 15
   fallCap: 30
-  jumpHeight: 43
-  jumping: 0
+  _defaultJumpDuration: 0.2
+  _jumpVelocity: 30
+  _jumping: 0
+  _jumpDuration: 0
 --- !u!61 &4124049068635046567
 BoxCollider2D:
   m_ObjectHideFlags: 0
