@@ -1,4 +1,5 @@
 
+using JetBrains.Annotations;
 using System;
 using UnityEngine;
 using static UnityEngine.UI.Image;
@@ -189,8 +190,10 @@ public class PlayerController : MonoBehaviour
 
     
     [SerializeField] private AnimationCurve curve;
+    [SerializeField] private int jumpCount = 0;
     [SerializeField] private bool startBufferTimer;
     [SerializeField] private bool isJumpbuffered = false;
+    [SerializeField] private bool canDoubleJump = true;
     [SerializeField] private float timerForJump = 0f;
     [SerializeField] private float timerForJumpBuffer = 0;
     public bool _airbone;
@@ -203,9 +206,10 @@ public class PlayerController : MonoBehaviour
             {
                 startBufferTimer = true;
             }
-            if(isGrounded)
+            if(isGrounded || canDoubleJump)
             {
                 _jumping = true;
+                jumpCount++;
                 isJumpbuffered = false;
                 timerForJump = 0;
                 timerForJumpBuffer = 0;
@@ -214,6 +218,17 @@ public class PlayerController : MonoBehaviour
             
         }
         
+
+        if(jumpCount < 2)
+        {
+            canDoubleJump = true;
+        }
+        else
+        {
+            canDoubleJump = false;
+        }
+
+
         if(isJumpbuffered)
         {
             _jumping = true;
@@ -266,12 +281,14 @@ public class PlayerController : MonoBehaviour
         {
             _airbone = false;
             //_jumping = false;
+            jumpCount = 0;
             startBufferTimer = false;
 
         }
         if(isGrounded)
         {
             startBufferTimer = false;
+            //jumpCount = 0;
         }
         if(isGrounded && (timerForJumpBuffer < _jumpBuffer&&timerForJumpBuffer > 0))
         {
