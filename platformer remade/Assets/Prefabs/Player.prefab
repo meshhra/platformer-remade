@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904226963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.041, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266,6 +266,7 @@ MonoBehaviour:
   fallCap: 30
   _jumping: 0
   _jumpDuration: 1
+  _jumpBuffer: 0.23
   curve:
     serializedVersion: 2
     m_Curve:
@@ -317,7 +318,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  time: 0.50119376
+  startBufferTimer: 0
+  isJumpbuffered: 0
+  timerForJump: 0
+  timerForJumpBuffer: 0
   _airbone: 0
   _airTime: 0.9031006
 --- !u!61 &4124049068635046567
