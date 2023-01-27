@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1904226963}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,34 +240,90 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f074cf6b84ea0f54f8100222d945787e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigiBody2D: {fileID: 0}
-  boxCollider2D: {fileID: 0}
+  rigiBody2D: {fileID: 1096841560}
+  boxCollider2D: {fileID: 4124049068635046567}
   velocity: {x: 0, y: 0}
   inputX: 0
   inputY: 0
   jumpDown: 0
   jumpUp: 0
-  movementSpeed: 15
-  acceleration: 90
-  deacceleration: 120
+  movementSpeed: 12
+  acceleration: 120
+  deacceleration: 200
   currentHorizontalSpeed: 0
-  currentVerticalSpeed: 0
-  isGrounded: 0
+  currentVerticalSpeed: 11.737019
+  isGrounded: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 16
   rayLength: 0.2
-  raySpacing: 0
+  raySpacing: 0.33333334
   rayCount: 4
   isCieled: 0
   defaultGravity: 1
   gravityUp: 10
-  gravityDown: 15
+  gravityDown: 13
   fallCap: 30
-  _defaultJumpDuration: 0.2
-  _jumpVelocity: 30
+  _defaultJumpDuration: 1
+  _jumpVelocity: 20
+  _jumpHeight: 6
   _jumping: 0
-  _jumpDuration: 0
+  _jumpDuration: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0009603584
+      value: 5.0074673
+      inSlope: 215.69165
+      outSlope: 215.69165
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.27734864
+    - serializedVersion: 3
+      time: 0.045348942
+      value: 22.418633
+      inSlope: 311.84247
+      outSlope: 311.84247
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.065099545
+    - serializedVersion: 3
+      time: 0.15162513
+      value: 26.271843
+      inSlope: -102.702034
+      outSlope: -102.702034
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11336859
+    - serializedVersion: 3
+      time: 0.39936748
+      value: 5.064559
+      inSlope: -77.00637
+      outSlope: -77.00637
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16115873
+      outWeight: 0.13309962
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.028505594
+      inSlope: -5.6093273
+      outSlope: -5.6093273
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.13663784
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  time: 0.31387863
+  y: 0
+  _airbone: 0
+  _airTime: 0.29830053
 --- !u!61 &4124049068635046567
 BoxCollider2D:
   m_ObjectHideFlags: 0
