@@ -282,8 +282,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.27734864
     - serializedVersion: 3
-      time: 0.045348942
-      value: 22.418633
+      time: 0.11277246
+      value: 37.029488
       inSlope: 311.84247
       outSlope: 311.84247
       tangentMode: 0
@@ -291,8 +291,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.065099545
     - serializedVersion: 3
-      time: 0.15162513
-      value: 26.271843
+      time: 0.21904865
+      value: 40.882698
       inSlope: -102.702034
       outSlope: -102.702034
       tangentMode: 0
@@ -348,8 +348,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.8020574, y: 0.8020574}
+  m_EdgeRadius: 0.09
 --- !u!50 &1096841560
 Rigidbody2D:
   serializedVersion: 4

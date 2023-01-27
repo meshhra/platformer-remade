@@ -55,7 +55,9 @@ public class PlayerController : MonoBehaviour
     {
         if (inputX!=0)
         {
-            currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, movementSpeed * inputX, acceleration * Time.deltaTime);
+            //currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, movementSpeed * inputX, acceleration * Time.deltaTime);
+            currentHorizontalSpeed += Time.deltaTime * movementSpeed * acceleration * inputX;
+            currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed,-movementSpeed,movementSpeed);
         }
         else
         {
