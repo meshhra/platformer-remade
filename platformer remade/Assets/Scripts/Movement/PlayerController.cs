@@ -20,11 +20,16 @@ public class PlayerController : MonoBehaviour
     {
         velocity = rigiBody2D.velocity;
         GetInput();
-        SetHorizonatlSpeed();
+        //SetHorizonatlSpeed();
         CheckGrounded();
         CheckCieling();
         CalculateGravity();
         CalculateJump();
+    }
+
+    private void FixedUpdate()
+    {
+        SetHorizonatlSpeed();
     }
 
     #region INPUT
@@ -194,7 +199,7 @@ public class PlayerController : MonoBehaviour
     {
         if(jumpDown)
         {
-            if(_airbone)
+            if(!isGrounded)
             {
                 startBufferTimer = true;
             }
@@ -262,7 +267,10 @@ public class PlayerController : MonoBehaviour
             startBufferTimer = false;
 
         }
-
+        if(isGrounded)
+        {
+            startBufferTimer = false;
+        }
         if(isGrounded && (timerForJumpBuffer < _jumpBuffer&&timerForJumpBuffer > 0))
         {
             isJumpbuffered = true;
@@ -271,6 +279,11 @@ public class PlayerController : MonoBehaviour
         if(startBufferTimer)
         {
             timerForJumpBuffer += Time.deltaTime;
+        }
+
+        if(jumpUp && _jumping)
+        {
+            _jumping = false;
         }
     }
 
