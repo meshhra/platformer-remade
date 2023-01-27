@@ -74,7 +74,7 @@ TrailRenderer:
   m_SortingLayerID: -270468705
   m_SortingLayer: 2
   m_SortingOrder: -1
-  m_Time: 1.12
+  m_Time: 0.12
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -83,21 +83,21 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0.033103943
-        value: 0.2295475
-        inSlope: 0
-        outSlope: 0
+        value: 0.25160408
+        inSlope: -0.01003666
+        outSlope: -0.01003666
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.22470938
       - serializedVersion: 3
-        time: 0.7411194
-        value: 0.11888099
-        inSlope: 0.06428785
-        outSlope: 0.06428785
+        time: 0.7443431
+        value: 0.23652357
+        inSlope: -0.018105134
+        outSlope: -0.018105134
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.35848054
+        inWeight: 1
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -344,8 +344,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8020574, y: 0.8020574}
-  m_EdgeRadius: 0.09
+  m_Size: {x: 0.81298685, y: 0.81298685}
+  m_EdgeRadius: 0.07
 --- !u!50 &1096841560
 Rigidbody2D:
   serializedVersion: 4
