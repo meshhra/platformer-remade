@@ -229,6 +229,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        //the actual jump starts here
         if(_jumping)
         {
             if (timerForJump < _jumpDuration / 2) 
@@ -238,6 +239,7 @@ public class PlayerController : MonoBehaviour
                 rigiBody2D.velocity = new Vector2(rigiBody2D.velocity.x, currentVerticalSpeed); 
             }
         }
+        //actual jump end here
         
         if(_jumping && rigiBody2D.velocity.y > 0 && jumpUp)
         {
