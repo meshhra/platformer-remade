@@ -234,6 +234,7 @@ public class PlayerController : MonoBehaviour
     {
         if(jumpDown)
         {
+            timerForJumpBuffer = 0;
             if(!isGrounded)
             {
                 startBufferTimer = true;
