@@ -21,17 +21,14 @@ public class PlayerController : MonoBehaviour
     {
         velocity = rigiBody2D.velocity;
         GetInput();
-        //SetHorizonatlSpeed();
+        SetHorizonatlSpeed();
         CheckGrounded();
         CheckCieling();
         CalculateGravity();
         CalculateJump();
     }
 
-    private void FixedUpdate()
-    {
-        SetHorizonatlSpeed();
-    }
+    
 
     #region INPUT
     [Header("INPUT")]
@@ -81,7 +78,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float raySpacing;
     [SerializeField] private int rayCount = 4;
 
-    void CheckGrounded()
+    /*void CheckGrounded()
     {
         raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
         Vector2 _rayOrigin0 = boxCollider2D.bounds.min + (Vector3.right * raySpacing * 0);
@@ -111,6 +108,41 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
 
+    }*/
+    
+
+    void CheckGrounded()
+    {
+        //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
+        
+        Vector2 _rayOrigin0 = (transform.position - new Vector3(0.4f ,0.4f, 0)) + (Vector3.right * raySpacing * 0);
+        Vector2 _rayOrigin1 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 1);
+        Vector2 _rayOrigin2 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 2);
+        Vector2 _rayOrigin3 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 3);
+
+
+        RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.down, rayLength);
+        RaycastHit2D hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.down, rayLength);
+        RaycastHit2D hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.down, rayLength);
+        RaycastHit2D hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.down, rayLength);
+        if (hit0.collider == null && hit1.collider == null && hit2.collider == null && hit3.collider == null)
+        {
+            
+            Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.green);
+            Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.green);
+            Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.green);
+            isGrounded = false;
+        }
+        else
+        {
+            //Debug.Log($"{hit0.collider.name}");
+            Debug.DrawRay(_rayOrigin0, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.red);
+            Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.red);
+            isGrounded = true;
+        }
+
     }
     #endregion
 
@@ -121,11 +153,11 @@ public class PlayerController : MonoBehaviour
 
     void CheckCieling()
     {
-        raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
-        Vector2 _rayOrigin0 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 0);
-        Vector2 _rayOrigin1 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 1);
-        Vector2 _rayOrigin2 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 2);
-        Vector2 _rayOrigin3 = boxCollider2D.bounds.max + (Vector3.right * -raySpacing * 3);
+        //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
+        Vector2 _rayOrigin0 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 0);
+        Vector2 _rayOrigin1 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 1);
+        Vector2 _rayOrigin2 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 2);
+        Vector2 _rayOrigin3 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 3);
 
 
         RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.up, rayLength, layerMask);
