@@ -85763,6 +85763,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1798910041, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
+      propertyPath: _jumpBuffer
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5622897038851554502, guid: d3cd05cb9910f164a90dd06c8f35323e, type: 3}
       propertyPath: m_RootOrder
       value: 3
