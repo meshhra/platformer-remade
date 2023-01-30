@@ -38,6 +38,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Intencity: 1.57
+    - _Intencity: 2.14
     m_Colors: []
   m_BuildTextureStacks: []

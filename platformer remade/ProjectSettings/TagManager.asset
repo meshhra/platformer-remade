@@ -44,6 +44,9 @@ TagManager:
   - name: Background
     uniqueID: 1821890371
     locked: 0
+  - name: Tress and Bushes
+    uniqueID: 372015417
+    locked: 0
   - name: Player
     uniqueID: 4024498591
     locked: 0
