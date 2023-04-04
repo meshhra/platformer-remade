@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
         velocity = rigiBody2D.velocity;
         GetInput();
         SetHorizonatlSpeed();
+        
         CheckGrounded();
         CheckCieling();
         CalculateGravity();
@@ -58,7 +59,6 @@ public class PlayerController : MonoBehaviour
     {
         if (inputX != 0)
         {
-            //currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, movementSpeed * inputX, acceleration * Time.deltaTime);
             currentHorizontalSpeed += Time.deltaTime * movementSpeed * acceleration * inputX;
             currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed, -movementSpeed, movementSpeed);
         }
@@ -76,49 +76,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float rayLength = 1f;
     [SerializeField] private float raySpacing;
-    [SerializeField] private int rayCount = 4;
-
-    /*void CheckGrounded()
-    {
-        raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
-        Vector2 _rayOrigin0 = boxCollider2D.bounds.min + (Vector3.right * raySpacing * 0);
-        Vector2 _rayOrigin1 = boxCollider2D.bounds.min + (Vector3.right * raySpacing * 1);
-        Vector2 _rayOrigin2 = boxCollider2D.bounds.min + (Vector3.right * raySpacing * 2);
-        Vector2 _rayOrigin3 = boxCollider2D.bounds.min + (Vector3.right * raySpacing * 3);
-
-
-        RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.down, rayLength, layerMask);
-        RaycastHit2D hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.down, rayLength, layerMask);
-        RaycastHit2D hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.down, rayLength, layerMask);
-        RaycastHit2D hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.down, rayLength, layerMask);
-        if (hit0.collider == null && hit1.collider == null && hit2.collider == null && hit3.collider == null)
-        {
-            Debug.DrawRay(_rayOrigin0, Vector2.down * rayLength, Color.green);
-            Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.green);
-            Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.green);
-            Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.green);
-            isGrounded = false;
-        }
-        else
-        {
-            Debug.DrawRay(_rayOrigin0, Vector2.down * rayLength, Color.red);
-            Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.red);
-            Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.red);
-            Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.red);
-            isGrounded = true;
-        }
-
-    }*/
+   
     
 
     void CheckGrounded()
     {
         //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
-        
-        Vector2 _rayOrigin0 = (transform.position - new Vector3(0.4f ,0.4f, 0)) + (Vector3.right * raySpacing * 0);
-        Vector2 _rayOrigin1 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 1);
-        Vector2 _rayOrigin2 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 2);
-        Vector2 _rayOrigin3 = (transform.position - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * raySpacing * 3);
+        Vector3 _positionNow = transform.position;
+        Vector2 _rayOrigin0 = (_positionNow - new Vector3(0.4f, 0.4f, 0));
+        Vector2 _rayOrigin1 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 1));
+        Vector2 _rayOrigin2 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 2));
+        Vector2 _rayOrigin3 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 3));
 
 
         RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.down, rayLength);
@@ -153,11 +121,12 @@ public class PlayerController : MonoBehaviour
 
     void CheckCieling()
     {
+        Vector3 _positionNow = transform.position;
         //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
-        Vector2 _rayOrigin0 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 0);
-        Vector2 _rayOrigin1 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 1);
-        Vector2 _rayOrigin2 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 2);
-        Vector2 _rayOrigin3 = (transform.position + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * -raySpacing * 3);
+        Vector2 _rayOrigin0 = (_positionNow + new Vector3(0.4f, 0.4f, 0));
+        Vector2 _rayOrigin1 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 1));
+        Vector2 _rayOrigin2 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 2));
+        Vector2 _rayOrigin3 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 3));
 
 
         RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.up, rayLength, layerMask);
