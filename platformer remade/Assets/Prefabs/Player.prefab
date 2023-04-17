@@ -261,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5622897038851554502}
   - component: {fileID: 5622897038851554505}
+  - component: {fileID: 9198910167009631745}
   - component: {fileID: 1798910041}
   - component: {fileID: 4124049068635046567}
   - component: {fileID: 1096841560}
@@ -340,6 +341,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9198910167009631745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622897038851554506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beca33808d67b0045a6e3076888d527e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1798910041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +383,6 @@ MonoBehaviour:
     m_Bits: 16
   rayLength: 0.2
   raySpacing: 0.27
-  rayCount: 4
   isCieled: 0
   defaultGravity: 1
   gravityUp: 10
@@ -455,7 +467,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3999999, y: 2.3999999}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
