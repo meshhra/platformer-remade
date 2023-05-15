@@ -8,9 +8,12 @@ namespace Movement
         [FormerlySerializedAs("rigiBody2D")]
         [SerializeField] private Rigidbody2D rigidBody2D;
 
+        [SerializeField] private BoxCollider2D boxCollider2D;
+
         private void Start()
         {
             rigidBody2D = GetComponent<Rigidbody2D>();
+            boxCollider2D = GetComponent<BoxCollider2D>();
             Physics2D.queriesStartInColliders = false;
         }
 
@@ -19,10 +22,10 @@ namespace Movement
         {
             velocity = rigidBody2D.velocity;
             GetInput();
-            SetHorizonatlSpeed();
+            SetHorizontalSpeed();
         
             CheckGrounded();
-            CheckCieling();
+            CheckCeiling();
             CalculateGravity();
             CalculateJump();
         }
@@ -53,7 +56,7 @@ namespace Movement
         [SerializeField] private float currentHorizontalSpeed;
         [SerializeField] private float currentVerticalSpeed;
 
-        void SetHorizonatlSpeed()
+        private void SetHorizontalSpeed()
         {
             if (inputX != 0)
             {
@@ -74,24 +77,24 @@ namespace Movement
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float rayLength = 1f;
         [SerializeField] private float raySpacing;
-   
-    
+        private const int RAY_COUNT = 4;
 
-        void CheckGrounded()
+
+        public void CheckGrounded()
         {
-            //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
-            Vector3 _positionNow = transform.position;
+            raySpacing = boxCollider2D.bounds.size.x / (RAY_COUNT - 1);
+            var _positionNow = transform.position;
             Vector2 _rayOrigin0 = (_positionNow - new Vector3(0.4f, 0.4f, 0));
             Vector2 _rayOrigin1 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 1));
             Vector2 _rayOrigin2 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 2));
             Vector2 _rayOrigin3 = (_positionNow - new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (raySpacing * 3));
 
 
-            RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.down, rayLength);
-            RaycastHit2D hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.down, rayLength);
-            RaycastHit2D hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.down, rayLength);
-            RaycastHit2D hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.down, rayLength);
-            if (hit0.collider == null && hit1.collider == null && hit2.collider == null && hit3.collider == null)
+            RaycastHit2D _hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.down, rayLength);
+            RaycastHit2D _hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.down, rayLength);
+            RaycastHit2D _hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.down, rayLength);
+            RaycastHit2D _hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.down, rayLength);
+            if (_hit0.collider == null && _hit1.collider == null && _hit2.collider == null && _hit3.collider == null)
             {
             
                 Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.green);
@@ -112,32 +115,33 @@ namespace Movement
         }
         #endregion
 
-        #region CIELING CHECK
-        [Header("CIELING CHECK")]
-        [SerializeField] private bool isCieled = false;
+        #region CEILING CHECK
+        [FormerlySerializedAs("isCieled")]
+        [Header("CEILING CHECK")]
+        [SerializeField] private bool isCeiled = false;
 
 
-        void CheckCieling()
+        private void CheckCeiling()
         {
-            Vector3 _positionNow = transform.position;
-            //raySpacing = boxCollider2D.bounds.size.x / (rayCount - 1);
+            var _positionNow = transform.position;
+            raySpacing = boxCollider2D.bounds.size.x / (RAY_COUNT - 1);
             Vector2 _rayOrigin0 = (_positionNow + new Vector3(0.4f, 0.4f, 0));
             Vector2 _rayOrigin1 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 1));
             Vector2 _rayOrigin2 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 2));
             Vector2 _rayOrigin3 = (_positionNow + new Vector3(0.4f, 0.4f, 0)) + (Vector3.right * (-raySpacing * 3));
 
 
-            RaycastHit2D hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.up, rayLength, layerMask);
-            RaycastHit2D hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.up, rayLength, layerMask);
-            RaycastHit2D hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.up, rayLength, layerMask);
-            RaycastHit2D hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.up, rayLength, layerMask);
-            if (hit0.collider == null && hit1.collider == null && hit2.collider == null && hit3.collider == null)
+            RaycastHit2D _hit0 = Physics2D.Raycast(_rayOrigin0, Vector2.up, rayLength, layerMask);
+            RaycastHit2D _hit1 = Physics2D.Raycast(_rayOrigin1, Vector2.up, rayLength, layerMask);
+            RaycastHit2D _hit2 = Physics2D.Raycast(_rayOrigin2, Vector2.up, rayLength, layerMask);
+            RaycastHit2D _hit3 = Physics2D.Raycast(_rayOrigin3, Vector2.up, rayLength, layerMask);
+            if (_hit0.collider == null && _hit1.collider == null && _hit2.collider == null && _hit3.collider == null)
             {
                 Debug.DrawRay(_rayOrigin0, Vector2.up * rayLength, Color.green);
                 Debug.DrawRay(_rayOrigin1, Vector2.up * rayLength, Color.green);
                 Debug.DrawRay(_rayOrigin2, Vector2.up * rayLength, Color.green);
                 Debug.DrawRay(_rayOrigin3, Vector2.up * rayLength, Color.green);
-                isCieled = false;
+                isCeiled = false;
             }
             else
             {
@@ -145,7 +149,7 @@ namespace Movement
                 Debug.DrawRay(_rayOrigin1, Vector2.down * rayLength, Color.red);
                 Debug.DrawRay(_rayOrigin2, Vector2.down * rayLength, Color.red);
                 Debug.DrawRay(_rayOrigin3, Vector2.down * rayLength, Color.red);
-                isCieled = true;
+                isCeiled = true;
             }
 
         }
@@ -181,129 +185,26 @@ namespace Movement
         #endregion
 
         #region JUMPING
-        [Header("JUMPING")]
 
-        [SerializeField] private bool _jumping = false;
-        [SerializeField] private float _jumpDuration;
-        [SerializeField] private float _jumpBuffer = 1f;
+        [Header("Jumping")] 
+        [SerializeField] private AnimationCurve jumpCurve;
 
-    
-        [SerializeField] private AnimationCurve curve;
-        [SerializeField] private int jumpCount = 0;
-        [SerializeField] private bool startBufferTimer;
-        [SerializeField] private bool isJumpbuffered = false;
-        [SerializeField] private bool canDoubleJump = true;
-        [SerializeField] private float timerForJump = 0f;
-        [SerializeField] private float timerForJumpBuffer = 0;
-        public bool _airbone;
-        public float _airTime;
-        void CalculateJump()
+
+        private void CalculateJump()
         {
-            if(jumpDown)
+            if (isGrounded)
             {
-                timerForJumpBuffer = 0;
-                if(!isGrounded)
+                if (jumpDown)
                 {
-                    startBufferTimer = true;
-                }
-                if(isGrounded || canDoubleJump)
-                {
-                    _jumping = true;
-                    jumpCount++;
-                    isJumpbuffered = false;
-                    timerForJump = 0;
-                    timerForJumpBuffer = 0;
-                    _airTime = 0;
-                }
-            
-            }
-        
-
-            if(jumpCount < 2)
-            {
-                canDoubleJump = true;
-            }
-            else
-            {
-                canDoubleJump = false;
-            }
-
-
-            if(isJumpbuffered)
-            {
-                _jumping = true;
-                isJumpbuffered = false;
-                timerForJump = 0;
-                timerForJumpBuffer = 0;
-                _airTime = 0;
-            }
-
-            if(_jumping && !isGrounded)
-            {
-                _airbone = true;
-            
-            }
-
-            //the actual jump starts here
-            if(_jumping)
-            {
-                if (timerForJump < _jumpDuration / 2) 
-                {
-                    timerForJump += Time.deltaTime;
-                    currentVerticalSpeed = curve.Evaluate(timerForJump);
-                    rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, currentVerticalSpeed); 
+                    rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 40);
                 }
             }
-            //actual jump end here
-        
-            if(_jumping && rigidBody2D.velocity.y > 0 && jumpUp)
+
+            if (jumpUp)
             {
-                _jumping = false;
-            
                 rigidBody2D.velocity = new Vector2(rigidBody2D.velocity.x, 0);
             }
-
-            if (jumpUp && rigidBody2D.velocity.y < 0)
-            {
-                _jumping = false;
-            }
-
-            if (_jumping && isCieled && rigidBody2D.velocity.y>0)
-            {
-                _jumping = false;
-            }
-
-            if (_airbone)
-            {
-                _airTime += Time.deltaTime;
-            }
-            if(_airbone && isGrounded)
-            {
-                _airbone = false;
-                //_jumping = false;
-                jumpCount = 0;
-                startBufferTimer = false;
-
-            }
-            if(isGrounded)
-            {
-                startBufferTimer = false;
-                //jumpCount = 0;
-            }
-            if(isGrounded && (timerForJumpBuffer < _jumpBuffer&&timerForJumpBuffer > 0))
-            {
-                isJumpbuffered = true;
-            }
-
-            if(startBufferTimer)
-            {
-                timerForJumpBuffer += Time.deltaTime;
-            }
-
-            if(jumpUp && _jumping)
-            {
-                _jumping = false;
-            }
+            
         }
 
         #endregion
