@@ -14,13 +14,14 @@ namespace Movement
         {
             playerRigidBody2D = GetComponent<Rigidbody2D>();
             playerCollider2D = GetComponent<BoxCollider2D>();
+            
         }
 
         private void Update()
         {
             rigidbodyVelocity = playerRigidBody2D.velocity;
             GetInput();
-            
+            CheckGrounded();
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
@@ -43,12 +44,21 @@ namespace Movement
         #region Ground Check
 
         [Header("GROUND CHECK")] 
-        [SerializeField] private int rayCount;
+        [SerializeField] private int rayCount = 3;
         [SerializeField] private float rayLength = 0.3f;
+        [SerializeField] private LayerMask layerMask;
+        [SerializeField] private float skinWidth = 0.1f;
 
         private void CheckGrounded()
         {
-            
+            for (int i = 0; i < rayCount; i++)
+            {
+                var _positionNow = transform.position;
+                var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
+                var _rayOrigin = (_positionNow - new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (_raySpacing * i));
+                var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.down, rayLength, layerMask);
+                Debug.DrawRay(_rayOrigin, Vector2.down * rayLength, Color.red);
+            }
         }
         #endregion
 
