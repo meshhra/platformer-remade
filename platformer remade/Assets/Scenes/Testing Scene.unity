@@ -528,6 +528,10 @@ PrefabInstance:
       propertyPath: cayoteeTime
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2430315335291545540, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
+      propertyPath: jumpBufferTime
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545542, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_RootOrder
       value: 1
