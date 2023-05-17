@@ -49,15 +49,39 @@ namespace Movement
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float skinWidth = 0.1f;
 
+        [SerializeField] private bool isGrounded;
+        [SerializeField] private int count;
+
         private void CheckGrounded()
         {
+            count = 0;
             for (int i = 0; i < rayCount; i++)
             {
                 var _positionNow = transform.position;
                 var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
                 var _rayOrigin = (_positionNow - new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (_raySpacing * i));
                 var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.down, rayLength, layerMask);
-                Debug.DrawRay(_rayOrigin, Vector2.down * rayLength, Color.red);
+
+
+                if (_raycastHit2D.collider == null)
+                {
+                    Debug.DrawRay(_rayOrigin, Vector2.down * rayLength, Color.green);
+                    
+                }
+                else
+                {
+                    Debug.DrawRay(_rayOrigin, Vector2.down * rayLength, Color.red);
+                    count++;
+                }
+            }
+
+            if (count > 0 && count <= rayCount)
+            {
+                isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
             }
         }
         #endregion
