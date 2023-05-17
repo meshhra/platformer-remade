@@ -22,6 +22,7 @@ namespace Movement
             rigidbodyVelocity = playerRigidBody2D.velocity;
             GetInput();
             CheckGrounded();
+            CheckCeiling();
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
@@ -50,16 +51,16 @@ namespace Movement
         [SerializeField] private float skinWidth = 0.1f;
 
         [SerializeField] private bool isGrounded;
-        [SerializeField] private int count;
+        [FormerlySerializedAs("count")] [SerializeField] private int countForGround;
 
         private void CheckGrounded()
         {
-            count = 0;
-            for (int i = 0; i < rayCount; i++)
+            countForGround = 0;
+            for (var _i = 0; _i < rayCount; _i++)
             {
                 var _positionNow = transform.position;
                 var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
-                var _rayOrigin = (_positionNow - new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (_raySpacing * i));
+                var _rayOrigin = (_positionNow - new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (_raySpacing * _i));
                 var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.down, rayLength, layerMask);
 
 
@@ -71,11 +72,11 @@ namespace Movement
                 else
                 {
                     Debug.DrawRay(_rayOrigin, Vector2.down * rayLength, Color.red);
-                    count++;
+                    countForGround++;
                 }
             }
 
-            if (count > 0 && count <= rayCount)
+            if (countForGround > 0 && countForCeiled <= rayCount)
             {
                 isGrounded = true;
             }
@@ -88,7 +89,41 @@ namespace Movement
 
         #region CEILING CHECK
 
-        
+        [SerializeField] private bool isCeiled;
+        [SerializeField] private int countForCeiled;
+
+        private void CheckCeiling()
+        {
+            countForCeiled = 0;
+            for (var _i = 0; _i < rayCount; _i++)
+            {
+                var _positionNow = transform.position;
+                var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
+                var _rayOrigin = (_positionNow + new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (-_raySpacing * _i));
+                var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.up, rayLength, layerMask);
+
+
+                if (_raycastHit2D.collider == null)
+                {
+                    Debug.DrawRay(_rayOrigin, Vector2.up * rayLength, Color.green);
+                    
+                }
+                else
+                {
+                    Debug.DrawRay(_rayOrigin, Vector2.up * rayLength, Color.red);
+                    countForCeiled++;
+                }
+            }
+
+            if (countForCeiled > 0 && countForCeiled <= rayCount)
+            {
+                isCeiled = true;
+            }
+            else
+            {
+                isCeiled = false;
+            }
+        }
 
         #endregion
         
@@ -109,19 +144,32 @@ namespace Movement
         #endregion
 
         #region JUMPING
-
+        [Header("JUMPING")]
         [SerializeField] private AnimationCurve jumpVelocityCurve;
         private bool startJump;
         [FormerlySerializedAs("_jumpTime")] [SerializeField] private float jumpTime = 0;
+        [SerializeField] private bool isJumpBuffered;
+        [SerializeField] private bool isInCayoteeTime;
+        [SerializeField] private float jumpBufferTime = 0.3f;
+        [SerializeField] private float cayoteeTime = 0.3f;
+        [SerializeField]private float bufferTimer = 0;
+        [SerializeField]private float cayoteeTimer = 0 ;
+
         private void CalculateJumpVelocity()
         {
             
             currentVerticalSpeed = rigidbodyVelocity.y;
-            
-            if (isJumpDown)
+            CalculateJumpBuffer();
+            CalculateCayoteeTime();
+            if (isGrounded || isInCayoteeTime)
             {
-                startJump = true;
-                jumpTime = 0;
+                if (isJumpDown || (isJumpBuffered && isGrounded))
+                {
+                    isJumpBuffered = false;
+                    isInCayoteeTime = false;
+                    startJump = true;
+                    jumpTime = 0;
+                }
             }
             
             if (startJump)
@@ -140,6 +188,47 @@ namespace Movement
             {
                 currentVerticalSpeed = 0;
                 startJump = false;
+            }
+
+            if (isCeiled)
+            {
+                // apply some downwards velocity to repel teh player from the ceiling.
+                currentVerticalSpeed = -2;
+                startJump = false;
+            }
+        }
+
+        private void CalculateJumpBuffer()
+        {
+            
+            if (isJumpDown && !isGrounded)
+            {
+                bufferTimer += Time.deltaTime;
+                isJumpBuffered = bufferTimer < jumpBufferTime;
+            }
+
+            if (isJumpUp)
+            {
+                isJumpBuffered = false;
+            }
+
+            if (isGrounded)
+            {
+                bufferTimer = 0;
+            }
+        }
+
+        private void CalculateCayoteeTime()
+        {
+            
+            if (!isGrounded)
+            {
+                cayoteeTimer += Time.deltaTime;
+                isInCayoteeTime = cayoteeTimer < cayoteeTime;
+            }
+            else
+            {
+                cayoteeTimer = 0;
             }
         }
         #endregion
