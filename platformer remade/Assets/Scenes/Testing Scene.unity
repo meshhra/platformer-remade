@@ -139,7 +139,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!61 &1007249023
 BoxCollider2D:
@@ -227,8 +227,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007249022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.2458, z: 0}
-  m_LocalScale: {x: 27.03032, y: 5.0857177, z: 1}
+  m_LocalPosition: {x: 0, y: -5.7808, z: 0}
+  m_LocalScale: {x: 46.784077, y: 10.155903, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -295,7 +295,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -313,35 +313,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f074cf6b84ea0f54f8100222d945787e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidBody2D: {fileID: 1219075519}
-  boxCollider2D: {fileID: 0}
-  velocity: {x: 0, y: 0}
-  inputX: 0
-  inputY: 0
-  jumpDown: 0
-  jumpUp: 0
-  movementSpeed: 10
-  acceleration: 50
-  deacceleration: 50
+  playerRigidBody2D: {fileID: 0}
+  playerCollider2D: {fileID: 0}
+  rigidbodyVelocity: {x: 0, y: 0}
+  acceleration: 90
+  deAcceleration: 90
+  maxSpeed: 11
   currentHorizontalSpeed: 0
   currentVerticalSpeed: 0
-  isGrounded: 0
-  layerMask:
+  jumpVelocityCurve:
     serializedVersion: 2
-    m_Bits: 16
-  rayLength: 1
-  raySpacing: 0
-  isCeiled: 0
-  defaultGravity: 1
-  gravityUp: 15
-  gravityDown: 20
-  fallCap: 30
-  jumpCurve:
-    serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0009603584
+      value: 5.0074673
+      inSlope: 215.69165
+      outSlope: 215.69165
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.27734864
+    - serializedVersion: 3
+      time: 0.08077998
+      value: 24.415333
+      inSlope: 131.58055
+      outSlope: 131.58055
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.26054955
+      outWeight: 0.065099545
+    - serializedVersion: 3
+      time: 0.18784961
+      value: 28.179943
+      inSlope: -84.40989
+      outSlope: -84.40989
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15904605
+    - serializedVersion: 3
+      time: 0.40350267
+      value: 4.917576
+      inSlope: -71.262856
+      outSlope: -71.262856
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.49239248
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.028505594
+      inSlope: -26.788673
+      outSlope: -26.788673
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.48453465
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  jumpTime: 0
 --- !u!212 &1219075521
 SpriteRenderer:
   m_ObjectHideFlags: 0

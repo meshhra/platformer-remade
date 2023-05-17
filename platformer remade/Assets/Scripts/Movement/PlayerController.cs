@@ -20,6 +20,7 @@ namespace Movement
         {
             rigidbodyVelocity = playerRigidBody2D.velocity;
             GetInput();
+            
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
@@ -41,8 +42,14 @@ namespace Movement
 
         #region Ground Check
 
-        
+        [Header("GROUND CHECK")] 
+        [SerializeField] private int rayCount;
+        [SerializeField] private float rayLength = 0.3f;
 
+        private void CheckGrounded()
+        {
+            
+        }
         #endregion
 
         #region CEILING CHECK
@@ -68,18 +75,38 @@ namespace Movement
         #endregion
 
         #region JUMPING
-        [Header("JUMPING")]
-        [SerializeField] private float jumpVelocity = 10f;
+
+        [SerializeField] private AnimationCurve jumpVelocityCurve;
+        private bool startJump;
+        [FormerlySerializedAs("_jumpTime")] [SerializeField] private float jumpTime = 0;
         private void CalculateJumpVelocity()
         {
+            
             currentVerticalSpeed = rigidbodyVelocity.y;
-            if (isJumpUp) currentVerticalSpeed = 0; 
             
-            if (!isJumpDown) return;
-            currentVerticalSpeed = jumpVelocity;
+            if (isJumpDown)
+            {
+                startJump = true;
+                jumpTime = 0;
+            }
             
-            
+            if (startJump)
+            {
+                jumpTime += Time.deltaTime;
+                currentVerticalSpeed = jumpVelocityCurve.Evaluate(jumpTime);
+            }
 
+            if (jumpTime > 0.5f && startJump)
+            {
+                currentVerticalSpeed = 0;
+                startJump = false;
+            }
+            
+            if (isJumpUp && !(rigidbodyVelocity.y <= 0))
+            {
+                currentVerticalSpeed = 0;
+                startJump = false;
+            }
         }
         #endregion
 
