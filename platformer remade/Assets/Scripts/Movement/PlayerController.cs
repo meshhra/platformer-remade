@@ -153,6 +153,7 @@ namespace Movement
         [SerializeField] private float jumpBufferTime = 0.3f;
         [SerializeField] private float cayoteeTime = 0.3f;
         [SerializeField]private float bufferTimer;
+        private bool startBufferTimer;
         [SerializeField]private float cayoteeTimer ;
 
         private void CalculateJumpVelocity()
@@ -203,17 +204,23 @@ namespace Movement
             
             if (isJumpDown && !isGrounded)
             {
+                startBufferTimer = true;
+            }
+
+            if (startBufferTimer)
+            {
                 bufferTimer += Time.deltaTime;
                 isJumpBuffered = bufferTimer < jumpBufferTime;
             }
-
             if (isJumpUp)
             {
+                startBufferTimer = false;
                 isJumpBuffered = false;
             }
 
             if (isGrounded)
             {
+                startBufferTimer = false;
                 bufferTimer = 0;
             }
         }
