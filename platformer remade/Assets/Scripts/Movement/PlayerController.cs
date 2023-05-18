@@ -1,4 +1,4 @@
-using System;
+
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -133,8 +133,8 @@ namespace Movement
         [SerializeField] private float acceleration = 90f;
         [SerializeField] private float deAcceleration = 90f;
         [SerializeField] private float maxSpeed = 11f;
-        [SerializeField] private float currentHorizontalSpeed = 0;
-        [SerializeField] private float currentVerticalSpeed = 0;
+        [SerializeField] private float currentHorizontalSpeed ;
+        [SerializeField] private float currentVerticalSpeed ;
         private void CalculateHorizontalSpeed()
         {
             currentHorizontalSpeed = xInput != 0
@@ -147,13 +147,13 @@ namespace Movement
         [Header("JUMPING")]
         [SerializeField] private AnimationCurve jumpVelocityCurve;
         private bool startJump;
-        [FormerlySerializedAs("_jumpTime")] [SerializeField] private float jumpTime = 0;
+        [FormerlySerializedAs("_jumpTime")] [SerializeField] private float jumpTime;
         [SerializeField] private bool isJumpBuffered;
         [SerializeField] private bool isInCayoteeTime;
         [SerializeField] private float jumpBufferTime = 0.3f;
         [SerializeField] private float cayoteeTime = 0.3f;
-        [SerializeField]private float bufferTimer = 0;
-        [SerializeField]private float cayoteeTimer = 0 ;
+        [SerializeField]private float bufferTimer;
+        [SerializeField]private float cayoteeTimer ;
 
         private void CalculateJumpVelocity()
         {

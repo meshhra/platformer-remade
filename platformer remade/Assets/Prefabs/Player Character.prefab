@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2430315335291545542}
   - component: {fileID: 2430315335291545541}
   - component: {fileID: 2430315335291545540}
+  - component: {fileID: 895766135}
   - component: {fileID: 2430315335291545531}
   - component: {fileID: 2430315335291545530}
   m_Layer: 0
@@ -121,8 +122,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.0009603584
-      value: 5.0074673
+      time: 0
+      value: 10.01763
       inSlope: 215.69165
       outSlope: 215.69165
       tangentMode: 0
@@ -175,6 +176,18 @@ MonoBehaviour:
   cayoteeTime: 0.1
   bufferTimer: 0
   cayoteeTimer: 0
+--- !u!114 &895766135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430315335291545529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07026f2555eb44b43a7aa7993c05f79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &2430315335291545531
 Rigidbody2D:
   serializedVersion: 4
