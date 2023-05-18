@@ -26,12 +26,7 @@ namespace Managers
         private void Update()
         {
             ReloadSceneWhenPlayerDies();
-
-            //load next scene after 1 second
-            if (playerMoveLevels.IsMoveToNextLevel)
-            {
-                SceneManager.LoadScene(currentSceneBuildIndex + 1);
-            }
+            MovePlayerToNextLevel();
         }
 
         private void ReloadSceneWhenPlayerDies()
@@ -53,6 +48,29 @@ namespace Managers
                     timer = 0;
                     
                     SceneManager.LoadScene(currentSceneBuildIndex);
+                    break;
+            }
+        }
+
+        private void MovePlayerToNextLevel()
+        {
+            if (!playerMoveLevels.IsMoveToNextLevel) return;
+            if (!isStartTimer)
+            {
+                timer = 0;
+                isStartTimer = true;
+            }
+
+            switch (isStartTimer)
+            {
+                case true when timer < 0.5f:
+                    timer += Time.deltaTime;
+                    break;
+                case true when timer > 0.5f:
+                    isStartTimer = false;
+                    timer = 0;
+                    
+                    SceneManager.LoadScene(currentSceneBuildIndex + 1);
                     break;
             }
         }
