@@ -108,6 +108,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   skinWidth: 0.1
+  isGrounded: 0
+  countForGround: 0
+  isCeiled: 0
+  countForCeiled: 0
   acceleration: 90
   deAcceleration: 90
   maxSpeed: 11
@@ -144,8 +148,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.15904605
     - serializedVersion: 3
-      time: 0.40350267
-      value: 4.917576
+      time: 0.3990497
+      value: 4.166052
       inSlope: -71.262856
       outSlope: -71.262856
       tangentMode: 0
@@ -155,16 +159,22 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.5
       value: 0.028505594
-      inSlope: -26.788673
-      outSlope: -26.788673
+      inSlope: -14.363279
+      outSlope: -14.363279
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.48453465
+      inWeight: 0.51829964
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   jumpTime: 0
+  isJumpBuffered: 0
+  isInCayoteeTime: 0
+  jumpBufferTime: 0.2
+  cayoteeTime: 0.1
+  bufferTimer: 0
+  cayoteeTimer: 0
 --- !u!50 &2430315335291545531
 Rigidbody2D:
   serializedVersion: 4
