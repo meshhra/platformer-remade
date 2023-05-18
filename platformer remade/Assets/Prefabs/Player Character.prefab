@@ -174,9 +174,10 @@ MonoBehaviour:
   isJumpBuffered: 0
   isInCayoteeTime: 0
   jumpBufferTime: 0.2
-  cayoteeTime: 0.1
+  cayoteeTime: 0.2
   bufferTimer: 0
   cayoteeTimer: 0
+  isLanded: 0
 --- !u!114 &895766135
 MonoBehaviour:
   m_ObjectHideFlags: 0
