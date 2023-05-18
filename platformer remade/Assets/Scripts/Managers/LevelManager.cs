@@ -2,6 +2,8 @@
 using GamePlay;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
+
 namespace Managers
 {
     public class LevelManager : MonoBehaviour
@@ -11,40 +13,24 @@ namespace Managers
         [SerializeField] private bool isStartTimer;
         [SerializeField] private float timer;
 
-        [SerializeField] private int currentScene;
+        [FormerlySerializedAs("currentScene")] [SerializeField] private int currentSceneBuildIndex;
 
         private void Start()
         {
             playerDeath = FindObjectOfType<PlayerDeath>();
             playerMoveLevels = FindObjectOfType<PlayerMoveLevels>();
 
-            currentScene = SceneManager.GetActiveScene().buildIndex;
+            currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
         }
 
         private void Update()
         {
             ReloadSceneWhenPlayerDies();
 
+            //load next scene after 1 second
             if (playerMoveLevels.IsMoveToNextLevel)
             {
-                if (!isStartTimer)
-                {
-                    timer = 0;
-                    isStartTimer = true;
-                }
-
-                switch (isStartTimer)
-                {
-                    case true when timer < 1:
-                        timer += Time.deltaTime;
-                        break;
-                    case true when timer > 1:
-                        isStartTimer = false;
-                        timer = 0;
-
-                        SceneManager.LoadScene(currentScene + 1);
-                        break;
-                }
+                SceneManager.LoadScene(currentSceneBuildIndex + 1);
             }
         }
 
@@ -66,7 +52,7 @@ namespace Managers
                     isStartTimer = false;
                     timer = 0;
                     
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    SceneManager.LoadScene(currentSceneBuildIndex);
                     break;
             }
         }
