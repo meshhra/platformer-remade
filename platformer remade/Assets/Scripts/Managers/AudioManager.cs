@@ -2,7 +2,7 @@ using System;
 using GamePlay;
 using Movement;
 using UnityEngine;
-using UnityEngine.Audio;
+
 namespace Managers
 {
     public class AudioManager : MonoBehaviour
