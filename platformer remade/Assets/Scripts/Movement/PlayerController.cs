@@ -155,13 +155,18 @@ namespace Movement
         [SerializeField]private float bufferTimer;
         private bool startBufferTimer;
         [SerializeField]private float cayoteeTimer ;
+        
+        [FormerlySerializedAs("isPlayerJustLanded")] [SerializeField] private bool isLanded;
 
         private void CalculateJumpVelocity()
         {
             
             currentVerticalSpeed = rigidbodyVelocity.y;
+            
             CalculateJumpBuffer();
-            CalculateCayoteeTime();
+            CalculateCayoteeTimeAndIsLanded();
+            
+            
             if (isGrounded || isInCayoteeTime)
             {
                 if (isJumpDown || (isJumpBuffered && isGrounded))
@@ -170,6 +175,7 @@ namespace Movement
                     isInCayoteeTime = false;
                     startJump = true;
                     jumpTime = 0;
+
                 }
             }
             
@@ -198,7 +204,8 @@ namespace Movement
                 startJump = false;
             }
         }
-
+        
+        
         private void CalculateJumpBuffer()
         {
             
@@ -224,17 +231,27 @@ namespace Movement
                 bufferTimer = 0;
             }
         }
-
-        private void CalculateCayoteeTime()
+        
+        
+        private void CalculateCayoteeTimeAndIsLanded()
         {
-            
+            /* Here in addition to calculating the cayotee time,
+             * it is also check if the player just landed on ground or not
+            */
             if (!isGrounded)
             {
                 cayoteeTimer += Time.deltaTime;
                 isInCayoteeTime = cayoteeTimer < cayoteeTime;
             }
+            else if(cayoteeTimer > 0 && isGrounded)
+            {
+                isLanded = true;
+               
+                cayoteeTimer = 0;
+            }
             else
             {
+                isLanded = false;
                 cayoteeTimer = 0;
             }
         }
