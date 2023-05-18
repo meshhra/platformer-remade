@@ -1,4 +1,5 @@
 
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,6 +11,8 @@ namespace Movement
         [SerializeField] private BoxCollider2D playerCollider2D;
         [SerializeField] private Vector2 rigidbodyVelocity;
 
+        public event EventHandler OnPlayerLand;
+        public event EventHandler OnPlayerJump; 
         private void Start()
         {
             playerRigidBody2D = GetComponent<Rigidbody2D>();
@@ -20,12 +23,17 @@ namespace Movement
         private void Update()
         {
             rigidbodyVelocity = playerRigidBody2D.velocity;
+            
+            // this checks of teh player has just landed and fires the corresponding event.
+            
+            
             GetInput();
             CheckGrounded();
             CheckCeiling();
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
+            
         }
 
         #region INPUT
@@ -164,13 +172,14 @@ namespace Movement
             currentVerticalSpeed = rigidbodyVelocity.y;
             
             CalculateJumpBuffer();
-            CalculateCayoteeTimeAndIsLanded();
+            CalculateCayoteeTime();
             
             
             if (isGrounded || isInCayoteeTime)
             {
                 if (isJumpDown || (isJumpBuffered && isGrounded))
                 {
+                    OnPlayerJump?.Invoke(this, EventArgs.Empty);
                     isJumpBuffered = false;
                     isInCayoteeTime = false;
                     startJump = true;
@@ -233,11 +242,9 @@ namespace Movement
         }
         
         
-        private void CalculateCayoteeTimeAndIsLanded()
+        private void CalculateCayoteeTime()
         {
-            /* Here in addition to calculating the cayotee time,
-             * it is also check if the player just landed on ground or not
-            */
+            
             if (!isGrounded)
             {
                 cayoteeTimer += Time.deltaTime;
@@ -245,13 +252,11 @@ namespace Movement
             }
             else if(cayoteeTimer > 0 && isGrounded)
             {
-                isLanded = true;
-               
+                OnPlayerLand?.Invoke(this, EventArgs.Empty);
                 cayoteeTimer = 0;
             }
             else
             {
-                isLanded = false;
                 cayoteeTimer = 0;
             }
         }
