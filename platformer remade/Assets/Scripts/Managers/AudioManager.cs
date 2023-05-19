@@ -7,6 +7,8 @@ namespace Managers
 {
     public class AudioManager : MonoBehaviour
     {
+        
+        
         private PlayerDeath playerDeath;
         private PlayerController playerController;
         private PlayerMoveLevels playerMoveLevels;
@@ -18,6 +20,8 @@ namespace Managers
         [SerializeField] private AudioClip jumpSound;
         [SerializeField] private AudioClip deathSound;
         [SerializeField] private AudioClip nextLevelAudio;
+
+       
 
         private void Start()
         {
