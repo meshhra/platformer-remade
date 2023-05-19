@@ -11,15 +11,12 @@ namespace Managers
     public class LevelManager : MonoBehaviour
     {
        
-        
+        [Header("REFERENCES")]
         [SerializeField] private PlayerDeath playerDeath;
-        private Rigidbody2D playerRigidBody2D;
         [SerializeField] private PlayerMoveLevels playerMoveLevels;
-        [SerializeField] private bool isStartTimer;
-        [SerializeField] private float timer;
-
         [SerializeField] private Animator transitionAnimator;
-
+        
+        [Header("SCENE INFO")]
         [FormerlySerializedAs("currentScene")] [SerializeField] private int currentSceneBuildIndex;
 
         
@@ -28,28 +25,26 @@ namespace Managers
         {
             playerDeath = FindObjectOfType<PlayerDeath>();
             playerMoveLevels = FindObjectOfType<PlayerMoveLevels>();
-            playerRigidBody2D = playerDeath.gameObject.GetComponent<Rigidbody2D>();
+            transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+            playerDeath.OnPlayerDeath += ReloadSceneWhenPlayerDies;
+            playerMoveLevels.OnPlayerLeverChange += MovePlayerToNextLevel;
         }
 
-        private void Update()
+        private void MovePlayerToNextLevel(object sender, EventArgs e)
         {
-            ReloadSceneWhenPlayerDies();
-            MovePlayerToNextLevel();
+            StartCoroutine(LoadScene(currentSceneBuildIndex + 1));
         }
+
 
         private void ReloadSceneWhenPlayerDies()
         {
-            if (!playerDeath.IsPlayerDead) return;
             StartCoroutine(LoadScene(currentSceneBuildIndex));
         }
 
-        private void MovePlayerToNextLevel()
-        {
-            if (!playerMoveLevels.IsMoveToNextLevel) return;
-            StartCoroutine(LoadScene(currentSceneBuildIndex + 1));
-        }
+        
 
         private IEnumerator LoadScene(int buildIndex)
         {

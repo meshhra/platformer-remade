@@ -25,6 +25,7 @@ namespace Managers
 
         private void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             playerController = FindObjectOfType<PlayerController>();
             playerDeath = playerController.gameObject.GetComponent<PlayerDeath>();
             playerMoveLevels = playerController.gameObject.GetComponent<PlayerMoveLevels>();
@@ -34,6 +35,8 @@ namespace Managers
 
             playerDeath.OnPlayerDeath += PlayDeathAudio;
             playerMoveLevels.OnPlayerLeverChange += PlayLevelAudio;
+            
+           
 
         }
 
