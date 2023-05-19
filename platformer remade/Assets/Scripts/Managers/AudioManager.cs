@@ -8,10 +8,10 @@ namespace Managers
     public class AudioManager : MonoBehaviour
     {
         
-        
-        private PlayerDeath playerDeath;
-        private PlayerController playerController;
-        private PlayerMoveLevels playerMoveLevels;
+        [Header("REFERENCES")]
+        [SerializeField]private PlayerDeath playerDeath;
+        [SerializeField]private PlayerController playerController;
+        [SerializeField]private PlayerMoveLevels playerMoveLevels;
         
         [Header("AUDIO")]
         [SerializeField]private AudioSource audioSource;
