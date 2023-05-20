@@ -163,6 +163,7 @@ namespace Movement
         [SerializeField]private float bufferTimer;
         private bool startBufferTimer;
         [SerializeField]private float cayoteeTimer ;
+       
         
         [FormerlySerializedAs("isPlayerJustLanded")] [SerializeField] private bool isLanded;
 
@@ -175,8 +176,9 @@ namespace Movement
             CalculateCayoteeTime();
             
             
-            if (isGrounded || isInCayoteeTime)
+            if (isGrounded || (isInCayoteeTime))
             {
+               
                 if (isJumpDown || (isJumpBuffered && isGrounded))
                 {
                     OnPlayerJump?.Invoke(this, EventArgs.Empty);
@@ -184,6 +186,8 @@ namespace Movement
                     isInCayoteeTime = false;
                     startJump = true;
                     jumpTime = 0;
+
+                    
 
                 }
             }
@@ -245,7 +249,7 @@ namespace Movement
         private void CalculateCayoteeTime()
         {
             
-            if (!isGrounded)
+            if (!isGrounded )
             {
                 cayoteeTimer += Time.deltaTime;
                 isInCayoteeTime = cayoteeTimer < cayoteeTime;
