@@ -8802,6 +8802,37 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &1762721657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1762721657, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
+  m_PrefabInstance: {fileID: 5549321331843327975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1762721659
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762721657}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &1926694082
 GameObject:
   m_ObjectHideFlags: 0
@@ -9147,37 +9178,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1070387732}
     m_Modifications:
-    - target: {fileID: 462462997, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_Layer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 462462998, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 9.411
-      objectReference: {fileID: 0}
-    - target: {fileID: 462462998, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 4.5451
-      objectReference: {fileID: 0}
     - target: {fileID: 462463000, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 462463000, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 462463000, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_GravityScale
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 462463000, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_CollisionDetection
+      propertyPath: m_Simulated
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762721657, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_Layer
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4849683053648391946, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
       propertyPath: m_RootOrder
@@ -9226,10 +9229,6 @@ PrefabInstance:
     - target: {fileID: 6311634428676141502, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
       propertyPath: m_Name
       value: Falling Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 6311634428676141502, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
-      propertyPath: m_Layer
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
