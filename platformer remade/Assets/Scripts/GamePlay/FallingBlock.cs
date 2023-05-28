@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay
 {
@@ -21,16 +22,32 @@ namespace GamePlay
         }
 
         public float waitTime = 10;
+        public float timer = 0;
+
+        public bool fall;
+        [FormerlySerializedAs("doStartFalling")] [SerializeField] private bool startTimer;
 
         private void StartFalling()
         {
-            StartCoroutine(FallingCoroutine());
+            startTimer = true;
+            timer = 0;
         }
-        
-        private IEnumerator FallingCoroutine()
+
+        private void Update()
         {
-            yield return new WaitForSeconds(waitTime);
-            blockRigidbody2D.gravityScale = gravityScale;
+            if (!startTimer) return;
+            if (fall) blockRigidbody2D.gravityScale = gravityScale;
+            if (timer < waitTime)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                fall = true;
+                print("fall");
+            }
         }
+
+        
     }
 }
