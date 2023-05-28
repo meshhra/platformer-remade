@@ -16,9 +16,9 @@ namespace GamePlay
             playerDeath = GameObject.Find("Player Character").GetComponent<PlayerDeath>();
             blockRigidbody2D = GetComponent<Rigidbody2D>();
             blockRigidbody2D.gravityScale = 0;
+            blockRigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
 
             playerDeath.OnPlayerEnterFallBlockTrigger += StartFalling;
-
         }
 
         public float waitTime = 10;
@@ -36,7 +36,12 @@ namespace GamePlay
         private void Update()
         {
             if (!startTimer) return;
-            if (fall) blockRigidbody2D.gravityScale = gravityScale;
+            if (fall)
+            {
+                blockRigidbody2D.constraints = RigidbodyConstraints2D.FreezePositionX | 
+                                               RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
+                blockRigidbody2D.gravityScale = gravityScale;
+            }
             if (timer < waitTime)
             {
                 timer += Time.deltaTime;
