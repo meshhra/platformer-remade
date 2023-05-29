@@ -22,7 +22,7 @@ namespace GamePlay
         }
 
         public float waitTime = 10;
-        public float timer = 0;
+        public float timer ;
 
         public bool fall;
         [FormerlySerializedAs("doStartFalling")] [SerializeField] private bool startTimer;
