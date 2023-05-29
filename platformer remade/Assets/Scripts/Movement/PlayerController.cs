@@ -38,7 +38,7 @@ namespace Movement
 
         #region INPUT
         
-        private float xInput;
+        [SerializeField]private float xInput;
         private bool isJumpDown;
         private bool isJumpUp;
 
