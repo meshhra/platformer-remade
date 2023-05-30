@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2430315335291545542}
   - component: {fileID: 2430315335291545541}
   - component: {fileID: 2430315335291545540}
-  - component: {fileID: 895766135}
+  - component: {fileID: 1690378160769418361}
   - component: {fileID: 2430315335291545531}
   - component: {fileID: 2430315335291545530}
   m_Layer: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   bufferTimer: 0
   cayoteeTimer: 0
   isLanded: 0
---- !u!114 &895766135
+--- !u!114 &1690378160769418361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

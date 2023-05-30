@@ -9,18 +9,18 @@ namespace GamePlay
     {
         [SerializeField]private Rigidbody2D blockRigidbody2D;
         [SerializeField]private float gravityScale;
-        private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
+        private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
 
         private void Start()
         {
-            collisionsAndTriggersCheck = GameObject.Find("Player Character").
+            collisionsAndTriggersEvents = GameObject.Find("Player Character").
                 GetComponent<CheckForCollisionsAndTriggers>();
             blockRigidbody2D = GetComponent<Rigidbody2D>();
             blockRigidbody2D.gravityScale = 0;
             blockRigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition | 
                                            RigidbodyConstraints2D.FreezeRotation;
 
-            collisionsAndTriggersCheck.OnPlayerEnterFallBlockTrigger += StartFalling;
+            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += StartFalling;
         }
 
         public float waitTime = 10;

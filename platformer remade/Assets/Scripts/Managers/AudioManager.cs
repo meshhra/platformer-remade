@@ -9,9 +9,10 @@ namespace Managers
     public class AudioManager : MonoBehaviour
     {
         
+        [FormerlySerializedAs("collisionsAndTriggersCheck")]
         [FormerlySerializedAs("playerDeath")]
         [Header("REFERENCES")]
-        [SerializeField]private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
+        [SerializeField]private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
         [SerializeField]private PlayerController playerController;
         
         [Header("AUDIO")]
@@ -28,13 +29,13 @@ namespace Managers
         {
             audioSource = GetComponent<AudioSource>();
             playerController = FindObjectOfType<PlayerController>();
-            collisionsAndTriggersCheck = playerController.gameObject.GetComponent<CheckForCollisionsAndTriggers>();
+            collisionsAndTriggersEvents = playerController.gameObject.GetComponent<CheckForCollisionsAndTriggers>();
 
             playerController.OnPlayerLand += PlayLandAudio;
             playerController.OnPlayerJump += PlayerJumpAudio;
 
-            collisionsAndTriggersCheck.OnPlayerDeath += PlayDeathAudio;
-            collisionsAndTriggersCheck.OnPlayerLevelChange += PlayLevelAudio;
+            collisionsAndTriggersEvents.OnPlayerDeath += PlayDeathAudio;
+            collisionsAndTriggersEvents.OnPlayerLevelChange += PlayLevelAudio;
 
 
 
