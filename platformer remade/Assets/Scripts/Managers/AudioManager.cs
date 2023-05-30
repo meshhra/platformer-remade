@@ -2,14 +2,16 @@ using System;
 using GamePlay;
 using Movement;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Managers
 {
     public class AudioManager : MonoBehaviour
     {
         
+        [FormerlySerializedAs("playerDeath")]
         [Header("REFERENCES")]
-        [SerializeField]private PlayerDeath playerDeath;
+        [SerializeField]private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
         [SerializeField]private PlayerController playerController;
         [SerializeField]private PlayerMoveLevels playerMoveLevels;
         
@@ -27,13 +29,13 @@ namespace Managers
         {
             audioSource = GetComponent<AudioSource>();
             playerController = FindObjectOfType<PlayerController>();
-            playerDeath = playerController.gameObject.GetComponent<PlayerDeath>();
+            collisionsAndTriggersCheck = playerController.gameObject.GetComponent<CheckForCollisionsAndTriggers>();
             playerMoveLevels = playerController.gameObject.GetComponent<PlayerMoveLevels>();
 
             playerController.OnPlayerLand += PlayLandAudio;
             playerController.OnPlayerJump += PlayerJumpAudio;
 
-            playerDeath.OnPlayerDeath += PlayDeathAudio;
+            collisionsAndTriggersCheck.OnPlayerDeath += PlayDeathAudio;
             playerMoveLevels.OnPlayerLeverChange += PlayLevelAudio;
             
            

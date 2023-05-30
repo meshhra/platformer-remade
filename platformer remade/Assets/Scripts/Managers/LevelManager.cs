@@ -12,7 +12,7 @@ namespace Managers
     {
         
         [Header("REFERENCES")]
-        [SerializeField] private PlayerDeath playerDeathScriptRef;
+        [SerializeField] private CheckForCollisionsAndTriggers playerDeathScriptRef;
         [FormerlySerializedAs("playerMoveLevels")] [SerializeField] private PlayerMoveLevels playerMoveLevelsRef;
         [SerializeField] private Animator transitionAnimator;
         
@@ -28,7 +28,7 @@ namespace Managers
 
         private void Start()
         {
-            playerDeathScriptRef = FindObjectOfType<PlayerDeath>();
+            playerDeathScriptRef = FindObjectOfType<CheckForCollisionsAndTriggers>();
             playerMoveLevelsRef = FindObjectOfType<PlayerMoveLevels>();
             transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 

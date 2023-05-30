@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 namespace GamePlay
 {
-    public class PlayerDeath : MonoBehaviour
+    public class CheckForCollisionsAndTriggers : MonoBehaviour
     {
         public event Action OnPlayerDeath;
         public event Action OnPlayerEnterFallBlockTrigger;
