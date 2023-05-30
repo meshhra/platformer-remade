@@ -36,9 +36,9 @@ namespace Managers
             playerController.OnPlayerJump += PlayerJumpAudio;
 
             collisionsAndTriggersCheck.OnPlayerDeath += PlayDeathAudio;
-            playerMoveLevels.OnPlayerLeverChange += PlayLevelAudio;
-            
-           
+            collisionsAndTriggersCheck.OnPlayerLevelChange += PlayLevelAudio;
+
+
 
         }
 

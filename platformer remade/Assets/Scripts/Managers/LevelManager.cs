@@ -11,8 +11,9 @@ namespace Managers
     public class LevelManager : MonoBehaviour
     {
         
+        [FormerlySerializedAs("playerDeathScriptRef")]
         [Header("REFERENCES")]
-        [SerializeField] private CheckForCollisionsAndTriggers playerDeathScriptRef;
+        [SerializeField] private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
         [FormerlySerializedAs("playerMoveLevels")] [SerializeField] private PlayerMoveLevels playerMoveLevelsRef;
         [SerializeField] private Animator transitionAnimator;
         
@@ -28,21 +29,21 @@ namespace Managers
 
         private void Start()
         {
-            playerDeathScriptRef = FindObjectOfType<CheckForCollisionsAndTriggers>();
+            collisionsAndTriggersCheck = FindObjectOfType<CheckForCollisionsAndTriggers>();
             playerMoveLevelsRef = FindObjectOfType<PlayerMoveLevels>();
             transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
-            playerDeathScriptRef.OnPlayerDeath += ReloadSceneWhenPlayerDies;
+            collisionsAndTriggersCheck.OnPlayerDeath += ReloadSceneWhenPlayerDies;
             
             if (alwaysReloadSameScene)
             {
-                playerMoveLevelsRef.OnPlayerLeverChange += ReloadSceneWhenPlayerDies;
+                collisionsAndTriggersCheck.OnPlayerLevelChange += ReloadSceneWhenPlayerDies;
             }
             else
             {
-                playerMoveLevelsRef.OnPlayerLeverChange += MovePlayerToNextLevel;
+                collisionsAndTriggersCheck.OnPlayerLevelChange += MovePlayerToNextLevel;
             }
         }
 
