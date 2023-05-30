@@ -6,9 +6,10 @@ using UnityEngine.EventSystems;
 
 namespace GamePlay
 {
-    public class PlayerDeath : MonoBehaviour
+    public class CheckForCollisionsAndTriggers : MonoBehaviour
     {
         public event Action OnPlayerDeath;
+        public event Action OnPlayerLevelChange;
         public event Action OnPlayerEnterFallBlockTrigger;
         private void OnCollisionEnter2D(Collision2D col)
         {
@@ -26,9 +27,16 @@ namespace GamePlay
                 OnPlayerEnterFallBlockTrigger?.Invoke();
             }
 
-            if (!col.gameObject.CompareTag("trap")) return;
-            Destroy(gameObject);//change this in future.
-            OnPlayerDeath?.Invoke();
+            if (col.gameObject.CompareTag("trap"))
+            {
+                Destroy(gameObject); //change this in future.
+                OnPlayerDeath?.Invoke();
+            }
+
+            if (col.gameObject.CompareTag("nextLevelTrigger"))
+            {
+                OnPlayerLevelChange?.Invoke();
+            }
         }
         
         
