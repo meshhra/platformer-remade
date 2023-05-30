@@ -25,7 +25,6 @@ namespace Visuals
             playerController.OnPlayerJump += PlayJumpAnimation;
             playerController.OnPlayerLand += PlayLandAnimation;
             
-
         }
 
   
