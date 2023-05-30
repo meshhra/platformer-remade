@@ -40,7 +40,7 @@ namespace Managers
 
         }
 
-        private void PlayLevelAudio(object sender, EventArgs e)
+        private void PlayLevelAudio()
         {
             audioSource.PlayOneShot(nextLevelAudio);
         }
@@ -50,12 +50,12 @@ namespace Managers
             audioSource.PlayOneShot(deathSound);
         }
 
-        private void PlayerJumpAudio(object sender, EventArgs e)
+        private void PlayerJumpAudio()
         {
             audioSource.PlayOneShot(jumpSound);
         }
 
-        private void PlayLandAudio(object sender, EventArgs e)
+        private void PlayLandAudio()
         {
             audioSource.PlayOneShot(landSound);
         }

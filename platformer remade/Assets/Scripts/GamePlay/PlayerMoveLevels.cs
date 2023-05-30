@@ -10,14 +10,13 @@ namespace GamePlay
     /// </summary>
     public class PlayerMoveLevels : MonoBehaviour
     {
-        public bool IsMoveToNextLevel { get; private set; }
-        public event EventHandler OnPlayerLeverChange;
+
+        public event Action OnPlayerLeverChange;
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.CompareTag("nextLevelTrigger"))
             {
-                IsMoveToNextLevel = true;
-                OnPlayerLeverChange?.Invoke(this,EventArgs.Empty);
+                OnPlayerLeverChange?.Invoke();
             }
         }
     }

@@ -10,30 +10,43 @@ namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
-       
+        
         [Header("REFERENCES")]
-        [SerializeField] private PlayerDeath playerDeath;
-        [SerializeField] private PlayerMoveLevels playerMoveLevels;
+        [SerializeField] private PlayerDeath playerDeathScriptRef;
+        [FormerlySerializedAs("playerMoveLevels")] [SerializeField] private PlayerMoveLevels playerMoveLevelsRef;
         [SerializeField] private Animator transitionAnimator;
         
-        [Header("SCENE INFO")]
+        [Tooltip("Reloads the same scene when the player enters the next level trigger.")]
+        [SerializeField]
+        private bool alwaysReloadSameScene;
+
+        [Header("SCENE INFO")] 
+        [SerializeField] private bool isTestScene;
         [FormerlySerializedAs("currentScene")] [SerializeField] private int currentSceneBuildIndex;
 
         
 
         private void Start()
         {
-            playerDeath = FindObjectOfType<PlayerDeath>();
-            playerMoveLevels = FindObjectOfType<PlayerMoveLevels>();
+            playerDeathScriptRef = FindObjectOfType<PlayerDeath>();
+            playerMoveLevelsRef = FindObjectOfType<PlayerMoveLevels>();
             transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
-            playerDeath.OnPlayerDeath += ReloadSceneWhenPlayerDies;
-            playerMoveLevels.OnPlayerLeverChange += MovePlayerToNextLevel;
+            playerDeathScriptRef.OnPlayerDeath += ReloadSceneWhenPlayerDies;
+            
+            if (alwaysReloadSameScene)
+            {
+                playerMoveLevelsRef.OnPlayerLeverChange += ReloadSceneWhenPlayerDies;
+            }
+            else
+            {
+                playerMoveLevelsRef.OnPlayerLeverChange += MovePlayerToNextLevel;
+            }
         }
 
-        private void MovePlayerToNextLevel(object sender, EventArgs e)
+        private void MovePlayerToNextLevel()
         {
             StartCoroutine(LoadScene(currentSceneBuildIndex + 1));
         }
