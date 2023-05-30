@@ -33,6 +33,8 @@ namespace Movement
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
+
+            
             
         }
 
@@ -196,6 +198,7 @@ namespace Movement
             {
                 jumpTime += Time.deltaTime;
                 currentVerticalSpeed = jumpVelocityCurve.Evaluate(jumpTime);
+                
             }
 
             if (jumpTime > 0.5f && startJump)
