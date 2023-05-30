@@ -13,7 +13,6 @@ namespace Managers
         [Header("REFERENCES")]
         [SerializeField]private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
         [SerializeField]private PlayerController playerController;
-        [SerializeField]private PlayerMoveLevels playerMoveLevels;
         
         [Header("AUDIO")]
         [SerializeField]private AudioSource audioSource;
@@ -30,7 +29,6 @@ namespace Managers
             audioSource = GetComponent<AudioSource>();
             playerController = FindObjectOfType<PlayerController>();
             collisionsAndTriggersCheck = playerController.gameObject.GetComponent<CheckForCollisionsAndTriggers>();
-            playerMoveLevels = playerController.gameObject.GetComponent<PlayerMoveLevels>();
 
             playerController.OnPlayerLand += PlayLandAudio;
             playerController.OnPlayerJump += PlayerJumpAudio;

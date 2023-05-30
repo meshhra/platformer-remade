@@ -14,7 +14,6 @@ namespace Managers
         [FormerlySerializedAs("playerDeathScriptRef")]
         [Header("REFERENCES")]
         [SerializeField] private CheckForCollisionsAndTriggers collisionsAndTriggersCheck;
-        [FormerlySerializedAs("playerMoveLevels")] [SerializeField] private PlayerMoveLevels playerMoveLevelsRef;
         [SerializeField] private Animator transitionAnimator;
         
         [Tooltip("Reloads the same scene when the player enters the next level trigger.")]
@@ -30,7 +29,6 @@ namespace Managers
         private void Start()
         {
             collisionsAndTriggersCheck = FindObjectOfType<CheckForCollisionsAndTriggers>();
-            playerMoveLevelsRef = FindObjectOfType<PlayerMoveLevels>();
             transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
