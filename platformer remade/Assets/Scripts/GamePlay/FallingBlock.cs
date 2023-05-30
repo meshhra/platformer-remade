@@ -12,10 +12,13 @@ namespace GamePlay
         private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
 
         private Animator fallingBlockAnimator;
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip boxLandSound;
 
         private void Start()
         {
             fallingBlockAnimator = GetComponent<Animator>();
+            audioSource = gameObject.AddComponent<AudioSource>();
             collisionsAndTriggersEvents = GameObject.Find("Player Character").
                 GetComponent<CheckForCollisionsAndTriggers>();
             blockRigidbody2D = GetComponent<Rigidbody2D>();
@@ -61,6 +64,14 @@ namespace GamePlay
         private void PlayVibration()
         {
             fallingBlockAnimator.Play("Block Vibrate");
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.layer == 4) // water layer is ground for now hence 4
+            {
+                audioSource.PlayOneShot(boxLandSound);
+            }
         }
     }
 }
