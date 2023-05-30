@@ -25,19 +25,10 @@ namespace Visuals
             playerController.OnPlayerJump += PlayJumpAnimation;
             playerController.OnPlayerLand += PlayLandAnimation;
             
-            //just testing 
-            playerController.OnPlayerJump += StartTimer;
 
         }
 
-        private void Update()
-        {
-            if (start)
-            {
-                timer += Time.deltaTime;
-            }
-        }
-
+  
         private void PlayJumpAnimation()
         {
             playerAnimator.CrossFade("Player Jump Up", 0);
@@ -51,20 +42,6 @@ namespace Visuals
         public void PlayIdleAnimation()
         {
             playerAnimator.CrossFade("Player Idle", 0);
-        }
-
-        private void PrintJumpApex()
-        {
-            start = false;  //just test
-            print("top" + timer);//just tet
-        }
-
-        public bool start;
-        public float timer;
-        private void StartTimer()
-        {
-            timer = 0;
-            start = true;
         }
         
         
