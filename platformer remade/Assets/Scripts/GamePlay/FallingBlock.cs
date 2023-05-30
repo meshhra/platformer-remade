@@ -72,6 +72,7 @@ namespace GamePlay
         {
             if (col.gameObject.layer == 4) // water layer is ground for now hence 4
             {
+                audioSource.Stop();
                 audioSource.PlayOneShot(boxLandSound);
             }
         }

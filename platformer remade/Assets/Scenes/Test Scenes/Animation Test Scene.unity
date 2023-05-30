@@ -17020,7 +17020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545542, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -80.8
+      value: -43.9
       objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545542, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17129,6 +17129,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1185995514}
     m_Modifications:
+    - target: {fileID: 462463002, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
+      propertyPath: boxLandSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f0dd20589fe9060438ad75fc29667871, type: 3}
+    - target: {fileID: 462463002, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
+      propertyPath: boxVibrateSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 968765677833ad34ca073a916a7c42a4, type: 3}
     - target: {fileID: 4849683053648391946, guid: 51a79099c426bf04987b2d1b6d115c49, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -17488,7 +17496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3177714764679858068, guid: 1c360c7648d5a0b40a09448bcebca4b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.12419
+      value: -15.22419
       objectReference: {fileID: 0}
     - target: {fileID: 3177714764679858068, guid: 1c360c7648d5a0b40a09448bcebca4b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -17786,11 +17794,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.707844
+      value: -15.22419
       objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.0844421
+      value: 3.0844429
       objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_LocalPosition.z
