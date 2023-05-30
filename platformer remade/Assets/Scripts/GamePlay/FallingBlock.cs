@@ -11,8 +11,11 @@ namespace GamePlay
         [SerializeField]private float gravityScale;
         private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
 
+        private Animator fallingBlockAnimator;
+
         private void Start()
         {
+            fallingBlockAnimator = GetComponent<Animator>();
             collisionsAndTriggersEvents = GameObject.Find("Player Character").
                 GetComponent<CheckForCollisionsAndTriggers>();
             blockRigidbody2D = GetComponent<Rigidbody2D>();
@@ -21,6 +24,7 @@ namespace GamePlay
                                            RigidbodyConstraints2D.FreezeRotation;
 
             collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += StartFalling;
+            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += PlayVibration;
         }
 
         public float waitTime = 10;
@@ -54,6 +58,9 @@ namespace GamePlay
             }
         }
 
-        
+        private void PlayVibration()
+        {
+            fallingBlockAnimator.Play("Block Vibrate");
+        }
     }
 }
