@@ -13,6 +13,7 @@ namespace GamePlay
 
         private Animator fallingBlockAnimator;
         private AudioSource audioSource;
+        [SerializeField] private AudioClip boxVibrateSound;
         [SerializeField] private AudioClip boxLandSound;
 
         private void Start()
@@ -27,7 +28,7 @@ namespace GamePlay
                                            RigidbodyConstraints2D.FreezeRotation;
 
             collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += StartFalling;
-            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += PlayVibration;
+            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += PlayVibrationAnimationAndSound;
         }
 
         public float waitTime = 10;
@@ -61,9 +62,10 @@ namespace GamePlay
             }
         }
 
-        private void PlayVibration()
+        private void PlayVibrationAnimationAndSound()
         {
             fallingBlockAnimator.Play("Block Vibrate");
+            audioSource.PlayOneShot(boxVibrateSound);
         }
 
         private void OnCollisionEnter2D(Collision2D col)
