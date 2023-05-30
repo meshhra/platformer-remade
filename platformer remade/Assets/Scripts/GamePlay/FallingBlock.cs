@@ -49,7 +49,6 @@ namespace GamePlay
             else
             {
                 fall = true;
-                print("fall");
             }
         }
 
