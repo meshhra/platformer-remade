@@ -45,11 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628b8d92a12a61c44af15e697b505961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeath: {fileID: 0}
+  collisionsAndTriggersEvents: {fileID: 0}
   playerController: {fileID: 0}
-  playerMoveLevels: {fileID: 0}
   audioSource: {fileID: 6741842034323165070}
-  landSound: {fileID: 8300000, guid: f0dd20589fe9060438ad75fc29667871, type: 3}
+  landSound: {fileID: 8300000, guid: b9fa8838f99eb1a45a13d5590e8b599f, type: 3}
   jumpSound: {fileID: 8300000, guid: 0978618218bdae64b905399473a7073a, type: 3}
   deathSound: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
   nextLevelAudio: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
