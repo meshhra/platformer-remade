@@ -13,8 +13,10 @@ namespace GamePlay
 
         private Animator fallingBlockAnimator;
         private AudioSource audioSource;
-        [SerializeField] private AudioClip boxVibrateSound;
-        [SerializeField] private AudioClip boxLandSound;
+        [FormerlySerializedAs("boxVibrateSound")] [SerializeField] private AudioClip blockVibrateSound;
+        [FormerlySerializedAs("boxLandSound")] [SerializeField] private AudioClip blockLandSound;
+
+        public event Action OnBlockLand;
 
         private void Start()
         {
@@ -29,6 +31,20 @@ namespace GamePlay
 
             collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += StartFalling;
             collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += PlayVibrationAnimationAndSound;
+
+            OnBlockLand += PlayBlockLandSound;
+            OnBlockLand += PlayBlockLandAnimation;
+        }
+
+        private void PlayBlockLandAnimation()
+        {
+            fallingBlockAnimator.CrossFade("Block Land",0 );
+        }
+
+        private void PlayBlockLandSound()
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(blockLandSound);
         }
 
         public float waitTime = 10;
@@ -65,15 +81,14 @@ namespace GamePlay
         private void PlayVibrationAnimationAndSound()
         {
             fallingBlockAnimator.Play("Block Vibrate");
-            audioSource.PlayOneShot(boxVibrateSound);
+            audioSource.PlayOneShot(blockVibrateSound);
         }
 
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col.gameObject.layer == 4) // water layer is ground for now hence 4
             {
-                audioSource.Stop();
-                audioSource.PlayOneShot(boxLandSound);
+                OnBlockLand?.Invoke();
             }
         }
     }

@@ -98,7 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockRigidbody2D: {fileID: 0}
   gravityScale: 7
-  boxLandSound: {fileID: 8300000, guid: 7bef0064f8567430cac22499c6b93d4f, type: 3}
+  blockVibrateSound: {fileID: 8300000, guid: 968765677833ad34ca073a916a7c42a4, type: 3}
+  blockLandSound: {fileID: 8300000, guid: f0dd20589fe9060438ad75fc29667871, type: 3}
   waitTime: 0.5
   timer: 0
   fall: 0
