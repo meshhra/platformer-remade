@@ -10,30 +10,43 @@ namespace Managers
 {
     public class LevelManager : MonoBehaviour
     {
-       
+        
+        [FormerlySerializedAs("collisionsAndTriggersCheck")]
+        [FormerlySerializedAs("playerDeathScriptRef")]
         [Header("REFERENCES")]
-        [SerializeField] private PlayerDeath playerDeath;
-        [SerializeField] private PlayerMoveLevels playerMoveLevels;
+        [SerializeField] private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
         [SerializeField] private Animator transitionAnimator;
         
-        [Header("SCENE INFO")]
+        [Tooltip("Reloads the same scene when the player enters the next level trigger.")]
+        [SerializeField]
+        private bool alwaysReloadSameScene;
+
+        [Header("SCENE INFO")] 
+        [SerializeField] private bool isTestScene;
         [FormerlySerializedAs("currentScene")] [SerializeField] private int currentSceneBuildIndex;
 
         
 
         private void Start()
         {
-            playerDeath = FindObjectOfType<PlayerDeath>();
-            playerMoveLevels = FindObjectOfType<PlayerMoveLevels>();
+            collisionsAndTriggersEvents = FindObjectOfType<CheckForCollisionsAndTriggers>();
             transitionAnimator = GameObject.Find("Image").GetComponent<Animator>();
 
             currentSceneBuildIndex = SceneManager.GetActiveScene().buildIndex;
 
-            playerDeath.OnPlayerDeath += ReloadSceneWhenPlayerDies;
-            playerMoveLevels.OnPlayerLeverChange += MovePlayerToNextLevel;
+            collisionsAndTriggersEvents.OnPlayerDeath += ReloadSceneWhenPlayerDies;
+            
+            if (alwaysReloadSameScene)
+            {
+                collisionsAndTriggersEvents.OnPlayerLevelChange += ReloadSceneWhenPlayerDies;
+            }
+            else
+            {
+                collisionsAndTriggersEvents.OnPlayerLevelChange += MovePlayerToNextLevel;
+            }
         }
 
-        private void MovePlayerToNextLevel(object sender, EventArgs e)
+        private void MovePlayerToNextLevel()
         {
             StartCoroutine(LoadScene(currentSceneBuildIndex + 1));
         }

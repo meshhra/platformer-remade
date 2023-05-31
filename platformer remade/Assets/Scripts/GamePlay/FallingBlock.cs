@@ -9,16 +9,42 @@ namespace GamePlay
     {
         [SerializeField]private Rigidbody2D blockRigidbody2D;
         [SerializeField]private float gravityScale;
-        private PlayerDeath playerDeath;
+        private CheckForCollisionsAndTriggers collisionsAndTriggersEvents;
+
+        private Animator fallingBlockAnimator;
+        private AudioSource audioSource;
+        [FormerlySerializedAs("boxVibrateSound")] [SerializeField] private AudioClip blockVibrateSound;
+        [FormerlySerializedAs("boxLandSound")] [SerializeField] private AudioClip blockLandSound;
+
+        public event Action OnBlockLand;
 
         private void Start()
         {
-            playerDeath = GameObject.Find("Player Character").GetComponent<PlayerDeath>();
+            fallingBlockAnimator = GetComponent<Animator>();
+            audioSource = gameObject.AddComponent<AudioSource>();
+            collisionsAndTriggersEvents = GameObject.Find("Player Character").
+                GetComponent<CheckForCollisionsAndTriggers>();
             blockRigidbody2D = GetComponent<Rigidbody2D>();
             blockRigidbody2D.gravityScale = 0;
-            blockRigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            blockRigidbody2D.constraints = RigidbodyConstraints2D.FreezePosition | 
+                                           RigidbodyConstraints2D.FreezeRotation;
 
-            playerDeath.OnPlayerEnterFallBlockTrigger += StartFalling;
+            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += StartFalling;
+            collisionsAndTriggersEvents.OnPlayerEnterFallBlockTrigger += PlayVibrationAnimationAndSound;
+
+            OnBlockLand += PlayBlockLandSound;
+            OnBlockLand += PlayBlockLandAnimation;
+        }
+
+        private void PlayBlockLandAnimation()
+        {
+            fallingBlockAnimator.CrossFade("Block Land",0 );
+        }
+
+        private void PlayBlockLandSound()
+        {
+            audioSource.Stop();
+            audioSource.PlayOneShot(blockLandSound);
         }
 
         public float waitTime = 10;
@@ -49,10 +75,21 @@ namespace GamePlay
             else
             {
                 fall = true;
-                print("fall");
             }
         }
 
-        
+        private void PlayVibrationAnimationAndSound()
+        {
+            fallingBlockAnimator.Play("Block Vibrate");
+            audioSource.PlayOneShot(blockVibrateSound);
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.layer == 4) // water layer is ground for now hence 4
+            {
+                OnBlockLand?.Invoke();
+            }
+        }
     }
 }

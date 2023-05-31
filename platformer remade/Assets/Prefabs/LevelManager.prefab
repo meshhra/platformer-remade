@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb5de4ebb0c50e74999cd9aee85a7e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeath: {fileID: 0}
-  playerMoveLevels: {fileID: 0}
-  isStartTimer: 0
-  timer: 0
+  playerDeathScriptRef: {fileID: 0}
+  playerMoveLevelsRef: {fileID: 0}
   transitionAnimator: {fileID: 0}
+  alwaysReloadSameScene: 0
+  isTestScene: 0
   currentSceneBuildIndex: 0

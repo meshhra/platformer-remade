@@ -11,8 +11,8 @@ namespace Movement
         [SerializeField] private BoxCollider2D playerCollider2D;
         [SerializeField] private Vector2 rigidbodyVelocity;
 
-        public event EventHandler OnPlayerLand;
-        public event EventHandler OnPlayerJump; 
+        public event Action OnPlayerLand;
+        public event Action OnPlayerJump; 
         private void Start()
         {
             playerRigidBody2D = GetComponent<Rigidbody2D>();
@@ -33,6 +33,8 @@ namespace Movement
             CalculateHorizontalSpeed();
             CalculateJumpVelocity();
             MovePlayer();
+
+            
             
         }
 
@@ -181,7 +183,7 @@ namespace Movement
                
                 if (isJumpDown || (isJumpBuffered && isGrounded))
                 {
-                    OnPlayerJump?.Invoke(this, EventArgs.Empty);
+                    OnPlayerJump?.Invoke();
                     isJumpBuffered = false;
                     isInCayoteeTime = false;
                     startJump = true;
@@ -196,6 +198,7 @@ namespace Movement
             {
                 jumpTime += Time.deltaTime;
                 currentVerticalSpeed = jumpVelocityCurve.Evaluate(jumpTime);
+                
             }
 
             if (jumpTime > 0.5f && startJump)
@@ -256,7 +259,7 @@ namespace Movement
             }
             else if(cayoteeTimer > 0 && isGrounded)
             {
-                OnPlayerLand?.Invoke(this, EventArgs.Empty);
+                OnPlayerLand?.Invoke();
                 cayoteeTimer = 0;
             }
             else
