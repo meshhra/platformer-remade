@@ -37919,25 +37919,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
-    - target: {fileID: 302372437275249864, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.5372549
-      objectReference: {fileID: 0}
-    - target: {fileID: 302372437275249864, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.5372549
-      objectReference: {fileID: 0}
-    - target: {fileID: 302372437275249864, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.5372549
-      objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.682957
+      value: -33.66666
       objectReference: {fileID: 0}
     - target: {fileID: 302372437275249865, guid: 77990d84119678d41a68a3ff381d50e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38108,18 +38096,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1457611991038575379, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_Color.b
-      value: 0.2300641
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457611991038575379, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_Color.g
-      value: 0.56962156
-      objectReference: {fileID: 0}
-    - target: {fileID: 1457611991038575379, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8867924
-      objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545529, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_Name
       value: Player Character
@@ -38166,18 +38142,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545542, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343530472937969653, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343530472937969653, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3343530472937969653, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
