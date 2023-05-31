@@ -59,7 +59,7 @@ namespace Movement
         [SerializeField] private float rayLength = 0.3f;
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float skinWidth = 0.1f;
-
+        [FormerlySerializedAs("xDelta")] [SerializeField] private float firstRayPosX = 0.935f;
         [SerializeField] private bool isGrounded;
         [FormerlySerializedAs("count")] [SerializeField] private int countForGround;
 
@@ -69,8 +69,8 @@ namespace Movement
             for (var _i = 0; _i < rayCount; _i++)
             {
                 var _positionNow = transform.position;
-                var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
-                var _rayOrigin = (_positionNow - new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (_raySpacing * _i));
+                var _raySpacing = ((playerCollider2D.bounds.size.x - 2 * skinWidth) / (rayCount-1));
+                var _rayOrigin = (_positionNow - new Vector3(firstRayPosX - skinWidth, 1.15f - skinWidth, 0)) + (Vector3.right * (_raySpacing * _i));
                 var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.down, rayLength, layerMask);
 
 
@@ -109,7 +109,7 @@ namespace Movement
             {
                 var _positionNow = transform.position;
                 var _raySpacing = ((playerCollider2D.bounds.size.x - 2*skinWidth) / (rayCount - 1));
-                var _rayOrigin = (_positionNow + new Vector3(0.5f - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (-_raySpacing * _i));
+                var _rayOrigin = (_positionNow + new Vector3(firstRayPosX - skinWidth, 0.5f - skinWidth, 0)) + (Vector3.right * (-_raySpacing * _i));
                 var _raycastHit2D = Physics2D.Raycast(_rayOrigin, Vector2.up, rayLength, layerMask);
 
 
@@ -168,6 +168,7 @@ namespace Movement
        
         
         [FormerlySerializedAs("isPlayerJustLanded")] [SerializeField] private bool isLanded;
+        
 
         private void CalculateJumpVelocity()
         {
