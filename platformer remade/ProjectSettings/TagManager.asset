@@ -14,7 +14,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - Player
   - 
   - 
@@ -47,15 +47,15 @@ TagManager:
   - name: Background
     uniqueID: 1821890371
     locked: 0
-  - name: Tress and Bushes
-    uniqueID: 372015417
+  - name: Mid-Ground
+    uniqueID: 172077105
     locked: 0
   - name: Player
     uniqueID: 4024498591
     locked: 0
-  - name: ground
+  - name: Ground
     uniqueID: 1892667423
     locked: 0
-  - name: foregraound
+  - name: Foreground
     uniqueID: 1168306669
     locked: 0
