@@ -38104,6 +38104,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Character
       objectReference: {fileID: 0}
+    - target: {fileID: 2430315335291545530, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
+      propertyPath: m_Size.x
+      value: 1.0364757
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430315335291545530, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0703285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430315335291545530, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.029115558
+      objectReference: {fileID: 0}
+    - target: {fileID: 2430315335291545531, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2430315335291545542, guid: 791ffa9eac2a0ac4f9b18d7d8b7a8937, type: 3}
       propertyPath: m_RootOrder
       value: 0
