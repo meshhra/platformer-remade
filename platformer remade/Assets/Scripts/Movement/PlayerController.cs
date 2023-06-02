@@ -40,13 +40,13 @@ namespace Movement
 
         #region INPUT
         
-        [SerializeField]private float xInput;
+        public float XInput { get; private set; }
         private bool isJumpDown;
         private bool isJumpUp;
 
         private void GetInput()
         {
-            xInput = Input.GetAxisRaw("Horizontal");
+            XInput = Input.GetAxisRaw("Horizontal");
             isJumpUp = Input.GetKeyUp(KeyCode.Space);
             isJumpDown = Input.GetKeyDown(KeyCode.Space);
         }
@@ -60,8 +60,7 @@ namespace Movement
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float skinWidth = 0.1f;
         
-        [FormerlySerializedAs("xDelta")] [SerializeField] private float firstRayPosX = 0.935f;
-        [SerializeField] private bool isGrounded;
+        public bool IsGrounded { get; private set; }
         [FormerlySerializedAs("count")] [SerializeField] private int countForGround;
 
         private void CheckGrounded()
@@ -91,11 +90,11 @@ namespace Movement
 
             if (countForGround > 0 && countForCeiled <= rayCount)
             {
-                isGrounded = true;
+                IsGrounded = true;
             }
             else
             {
-                isGrounded = false;
+                IsGrounded = false;
             }
         }
         #endregion
@@ -148,20 +147,20 @@ namespace Movement
         [SerializeField] private float acceleration = 90f;
         [SerializeField] private float deAcceleration = 90f;
         [SerializeField] private float maxSpeed = 11f;
-        [SerializeField] private float currentHorizontalSpeed ;
-        [SerializeField] private float currentVerticalSpeed ;
+        public float CurrentHorizontalSpeed { get; private set; }
+        public float CurrentVerticalSpeed { get; private set; }
         private void CalculateHorizontalSpeed()
         {
-            currentHorizontalSpeed = xInput != 0
-                ? Mathf.MoveTowards(currentHorizontalSpeed, maxSpeed * xInput, acceleration * Time.deltaTime)
-                : Mathf.MoveTowards(currentHorizontalSpeed, 0, deAcceleration * Time.deltaTime);
+            CurrentHorizontalSpeed = XInput != 0
+                ? Mathf.MoveTowards(CurrentHorizontalSpeed, maxSpeed * XInput, acceleration * Time.deltaTime)
+                : Mathf.MoveTowards(CurrentHorizontalSpeed, 0, deAcceleration * Time.deltaTime);
         }
         #endregion
 
         #region JUMPING
         [Header("JUMPING")]
         [SerializeField] private AnimationCurve jumpVelocityCurve;
-        private bool startJump;
+        public bool Jumping { get; private set; }
         [FormerlySerializedAs("_jumpTime")] [SerializeField] private float jumpTime;
         [SerializeField] private bool isJumpBuffered;
         [SerializeField] private bool isInCayoteeTime;
@@ -172,27 +171,27 @@ namespace Movement
         [SerializeField]private float cayoteeTimer ;
        
         
-        [FormerlySerializedAs("isPlayerJustLanded")] [SerializeField] private bool isLanded;
+        
         
 
         private void CalculateJumpVelocity()
         {
             
-            currentVerticalSpeed = rigidbodyVelocity.y;
+            CurrentVerticalSpeed = rigidbodyVelocity.y;
             
             CalculateJumpBuffer();
             CalculateCayoteeTime();
             
             
-            if (isGrounded || (isInCayoteeTime))
+            if (IsGrounded || (isInCayoteeTime))
             {
                
-                if (isJumpDown || (isJumpBuffered && isGrounded))
+                if (isJumpDown || (isJumpBuffered && IsGrounded))
                 {
                     OnPlayerJump?.Invoke();
                     isJumpBuffered = false;
                     isInCayoteeTime = false;
-                    startJump = true;
+                    Jumping = true;
                     jumpTime = 0;
 
                     
@@ -200,30 +199,30 @@ namespace Movement
                 }
             }
             
-            if (startJump)
+            if (Jumping)
             {
                 jumpTime += Time.deltaTime;
-                currentVerticalSpeed = jumpVelocityCurve.Evaluate(jumpTime);
+                CurrentVerticalSpeed = jumpVelocityCurve.Evaluate(jumpTime);
                 
             }
 
-            if (jumpTime > 0.5f && startJump)
+            if (jumpTime > 0.5f && Jumping)
             {
-                currentVerticalSpeed = 0;
-                startJump = false;
+                CurrentVerticalSpeed = 0;
+                Jumping = false;
             }
             
             if (isJumpUp && !(rigidbodyVelocity.y <= 0))
             {
-                currentVerticalSpeed = 0;
-                startJump = false;
+                CurrentVerticalSpeed = 0;
+                Jumping = false;
             }
 
             if (isCeiled)
             {
                 // apply some downwards velocity to repel teh player from the ceiling.
-                currentVerticalSpeed = -2;
-                startJump = false;
+                CurrentVerticalSpeed = -2;
+                Jumping = false;
             }
         }
         
@@ -231,7 +230,7 @@ namespace Movement
         private void CalculateJumpBuffer()
         {
             
-            if (isJumpDown && !isGrounded)
+            if (isJumpDown && !IsGrounded)
             {
                 startBufferTimer = true;
             }
@@ -247,7 +246,7 @@ namespace Movement
                 isJumpBuffered = false;
             }
 
-            if (isGrounded)
+            if (IsGrounded)
             {
                 startBufferTimer = false;
                 bufferTimer = 0;
@@ -258,12 +257,12 @@ namespace Movement
         private void CalculateCayoteeTime()
         {
             
-            if (!isGrounded )
+            if (!IsGrounded )
             {
                 cayoteeTimer += Time.deltaTime;
                 isInCayoteeTime = cayoteeTimer < cayoteeTime;
             }
-            else if(cayoteeTimer > 0 && isGrounded)
+            else if(cayoteeTimer > 0 && IsGrounded)
             {
                 OnPlayerLand?.Invoke();
                 cayoteeTimer = 0;
@@ -279,7 +278,7 @@ namespace Movement
 
         private void MovePlayer()
         {
-            playerRigidBody2D.velocity = new Vector2(currentHorizontalSpeed, currentVerticalSpeed);
+            playerRigidBody2D.velocity = new Vector2(CurrentHorizontalSpeed, CurrentVerticalSpeed);
         }
         #endregion
     }
