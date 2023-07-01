@@ -17,7 +17,7 @@ namespace Managers
 
         public void OnPlayButton()
         {
-            StartCoroutine(levelManager.LoadScene(0));
+            StartCoroutine(levelManager.LoadScene(1));
         }
     
     
