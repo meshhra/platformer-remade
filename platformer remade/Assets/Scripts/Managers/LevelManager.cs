@@ -54,13 +54,23 @@ namespace Managers
 
         private void ReloadSceneWhenPlayerDies()
         {
-            StartCoroutine(LoadScene(currentSceneBuildIndex));
+            StartCoroutine(LoadScene(currentSceneBuildIndex, 0.5f));
         }
 
         
 
         private IEnumerator LoadScene(int buildIndex)
         {
+            
+            transitionAnimator.Play("CrossFadeIn");
+            yield return new WaitForSeconds(1);
+            
+            SceneManager.LoadScene(buildIndex);
+        }
+        
+        private IEnumerator LoadScene(int buildIndex, float loadDelay)
+        {
+            yield return new WaitForSeconds(loadDelay);
             transitionAnimator.Play("CrossFadeIn");
             yield return new WaitForSeconds(1);
             
