@@ -59,7 +59,7 @@ namespace Managers
 
         
 
-        private IEnumerator LoadScene(int buildIndex)
+        public IEnumerator LoadScene(int buildIndex)
         {
             
             transitionAnimator.Play("CrossFadeIn");
@@ -68,7 +68,7 @@ namespace Managers
             SceneManager.LoadScene(buildIndex);
         }
         
-        private IEnumerator LoadScene(int buildIndex, float loadDelay)
+        public IEnumerator LoadScene(int buildIndex, float loadDelay)
         {
             yield return new WaitForSeconds(loadDelay);
             transitionAnimator.Play("CrossFadeIn");
