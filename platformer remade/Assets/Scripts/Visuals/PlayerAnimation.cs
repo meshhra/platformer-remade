@@ -8,7 +8,7 @@ namespace Visuals
     public class PlayerAnimation : MonoBehaviour 
     {
         // Anim times can be gathered from the state itself, but 
-        // for the simplicity of the video...
+        // for the simplicity ...
         [FormerlySerializedAs("_landAnimDuration")] [SerializeField] private float landAnimDuration = 0.250f;
   
 
